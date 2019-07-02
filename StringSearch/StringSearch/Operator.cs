@@ -4,26 +4,43 @@ using System.Text;
 
 namespace StringSearch
 {
+    /// <summary>
+    /// Base operator
+    /// </summary>
     public class Operator : IOperator
     {
-        public string Token { get; set; }
+        /// <summary>
+        /// Value
+        /// </summary>
+        public string Value { get; set; }
 
+        /// <summary>
+        /// Type
+        /// </summary>
         public OperatorType Type { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Operator"/> class
+        /// </summary>
         public Operator()
         {
             
         }
 
-        public Operator(string token, OperatorType operation)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Operator"/> class with the supplied value and operation
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="operation"></param>
+        public Operator(string value, OperatorType operation)
         {
-            Token = token;
+            Value = value;
             Type = operation;
         }
 
         public override string ToString()
         {
-            return this.Token;
+            return this.Value;
         }
 
         public override bool Equals(object obj)
@@ -35,7 +52,7 @@ namespace StringSearch
         public override int GetHashCode()
         {
             var hashCode = 38826312;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Token);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Value);
             hashCode = hashCode * -1521134295 + Type.GetHashCode();
             return hashCode;
         }

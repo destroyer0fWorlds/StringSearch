@@ -4,25 +4,37 @@ using System.Linq;
 
 namespace StringSearch.Tokens
 {
+    /// <summary>
+    /// Utility for parsing single value criteria tokens
+    /// </summary>
     class SingleTokenParser : TokenParser
     {
         private readonly HashSet<IOperator> _operators;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SingleTokenParser"/> class
+        /// </summary>
+        /// <param name="operators"></param>
         public SingleTokenParser(HashSet<IOperator> operators)
         {
             _operators = operators;
         }
 
+        /// <summary>
+        /// Parse a string value into tokens
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public override IEnumerable<IToken> Parse(string value)
         {
-            var sanitizedValue = this.FormatCondition(value);
+            var sanitizedValue = this.FormatValue(value);
 
             var components = sanitizedValue.Split(new[] { "[", "]" }, StringSplitOptions.RemoveEmptyEntries);
             this.ValidateComponents(components);
 
             // Convert from TokenType to ConditionType
             var op = components[1];
-            var @operator = _operators.FirstOrDefault(i => i.Token == op);
+            var @operator = _operators.FirstOrDefault(i => i.Value == op);
             if (@operator == null)
             {
                 throw new NotSupportedException($"No operator exists for '{op}'");

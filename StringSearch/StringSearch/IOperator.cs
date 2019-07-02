@@ -4,10 +4,19 @@ using System.Text;
 
 namespace StringSearch
 {
+    /// <summary>
+    /// Represents a configured operation
+    /// </summary>
     public interface IOperator
     {
-        string Token { get; set; }
+        /// <summary>
+        /// Value
+        /// </summary>
+        string Value { get; set; }
 
+        /// <summary>
+        /// Type
+        /// </summary>
         OperatorType Type { get; set; }
     }
 }

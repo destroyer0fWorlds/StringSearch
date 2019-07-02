@@ -4,7 +4,10 @@ using System.Linq;
 
 namespace StringSearch.Groups
 {
-    class ConditionGroup : Group
+    /// <summary>
+    /// Criterion group
+    /// </summary>
+    class CriterionGroup : Group
     {
         public override bool HasNestedGroups
         {

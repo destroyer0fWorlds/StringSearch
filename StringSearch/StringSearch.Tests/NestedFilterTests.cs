@@ -24,7 +24,6 @@ namespace StringSearch.Tests
             var nestedCriterion = (NestedCriterion)parseResults.ElementAt(1);
             Assert.Equal(typeof(Criterion), nestedCriterion.Criteria.ElementAt(0).GetType());
             Assert.Equal(typeof(Criterion), nestedCriterion.Criteria.ElementAt(1).GetType());
-            
         }
 
         [Fact]

@@ -6,10 +6,16 @@ using StringSearch.Tokens;
 
 namespace StringSearch
 {
+    /// <summary>
+    /// Utility for parsing a filter string to a hierarchical structure of objects
+    /// </summary>
     public class Parser
     {
         private readonly HashSet<IOperator> _operators;
 
+        /// <summary>
+        /// Initialize an instance of a <see cref="Parser"/> class
+        /// </summary>
         public Parser()
         {
             // To do: make these configurable so user can override with custom tokens
@@ -36,24 +42,41 @@ namespace StringSearch
             };
         }
 
+        /// <summary>
+        /// Parse a filter string
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public IEnumerable<ICriterion> Parse(string filter)
         {
             var groups = new Grouper(_operators).Group(filter);
             return this.Parse(groups);
         }
 
+        /// <summary>
+        /// Parse a filter string to a custom type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="filter"></param>
+        /// <param name="converter"></param>
+        /// <returns></returns>
         public T ParseAs<T>(string filter, IConverter<T> converter) where T : class
         {
             return converter.ConvertTo(this.Parse(filter));
         }
 
+        /// <summary>
+        /// Recursively parse a collection of groups into criteria
+        /// </summary>
+        /// <param name="groups"></param>
+        /// <returns></returns>
         private IEnumerable<ICriterion> Parse(IEnumerable<IGroup> groups)
         {
             IGroup previousGroup = null;
             var criteria = new List<ICriterion>();
             foreach (var group in groups)
             {
-                if (group is ConditionGroup conditionGroup)
+                if (group is CriterionGroup criterionGroup)
                 {
                     ICriterion criterion = null;
                     if (group.HasNestedGroups)

@@ -5,8 +5,16 @@ using StringSearch.Tokens;
 
 namespace StringSearch
 {
+    /// <summary>
+    /// Single value criterion parser
+    /// </summary>
     class CriterionParser : ICriterionParser
     {
+        /// <summary>
+        /// Parse a collection of tokens as a criterion
+        /// </summary>
+        /// <param name="tokens"></param>
+        /// <returns></returns>
         public ICriterion Parse(IEnumerable<IToken> tokens)
         {
             var valueCriterion = new Criterion();

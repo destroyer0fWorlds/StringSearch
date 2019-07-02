@@ -40,7 +40,7 @@ namespace StringSearch.Tests
         }
 
         [Fact]
-        public void Range_Filter_Should_Parse_Value_Successfully()
+        public void Range_Filter_Should_Parse_Values_Successfully()
         {
             // Arrange
             var filter = "(UserId[between]100-200)";

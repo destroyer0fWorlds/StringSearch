@@ -4,6 +4,9 @@ using System.Text;
 
 namespace StringSearch
 {
+    /// <summary>
+    /// Logic operator type
+    /// </summary>
     public enum LogicOperatorType
     {
         And = 0,

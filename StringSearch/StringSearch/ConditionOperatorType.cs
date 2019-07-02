@@ -4,6 +4,9 @@ using System.Text;
 
 namespace StringSearch
 {
+    /// <summary>
+    /// Operator type
+    /// </summary>
     public enum ConditionOperatorType
     {
         Equals = 0,

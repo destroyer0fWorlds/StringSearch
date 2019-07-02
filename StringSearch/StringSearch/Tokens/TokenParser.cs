@@ -4,13 +4,26 @@ using System.Text;
 
 namespace StringSearch.Tokens
 {
+    /// <summary>
+    /// Base token parser
+    /// </summary>
     abstract class TokenParser : ITokenParser
     {
+        /// <summary>
+        /// Parse a string value into tokens
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public abstract IEnumerable<IToken> Parse(string value);
 
-        protected string FormatCondition(string condition)
+        /// <summary>
+        /// Format the incoming value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        protected string FormatValue(string value)
         {
-            var value = (condition ?? string.Empty).Trim();
+            value = (value ?? string.Empty).Trim();
 
             if (value.StartsWith("("))
             {
@@ -24,6 +37,11 @@ namespace StringSearch.Tokens
             return value;
         }
 
+        /// <summary>
+        /// Convert a <see cref="OperatorType"/> enum to a <see cref="ConditionOperatorType"/> enum
+        /// </summary>
+        /// <param name="tokenType"></param>
+        /// <returns></returns>
         protected ConditionOperatorType ConvertOperatorTypeToConditionType(OperatorType tokenType)
         {
             var conditionType = ConditionOperatorType.Equals;
@@ -81,6 +99,10 @@ namespace StringSearch.Tokens
             return conditionType;
         }
 
+        /// <summary>
+        /// Validate that the parsed components are of the right size, shape, color, weight, etc.
+        /// </summary>
+        /// <param name="components"></param>
         protected abstract void ValidateComponents(string[] components);
     }
 }

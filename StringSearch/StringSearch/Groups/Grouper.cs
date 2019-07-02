@@ -5,15 +5,27 @@ using StringSearch.Tokens;
 
 namespace StringSearch.Groups
 {
+    /// <summary>
+    /// Parses a string into logical groups
+    /// </summary>
     class Grouper
     {
         private readonly HashSet<IOperator> _operators;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Grouper"/> class
+        /// </summary>
+        /// <param name="operators"></param>
         public Grouper(HashSet<IOperator> operators)
         {
             _operators = operators;
         }
 
+        /// <summary>
+        /// Parses the supplied string into a hierarchy of conditions and operators
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public IEnumerable<IGroup> Group(string value)
         {
             var characterSets = new List<CharacterSet>()
@@ -25,6 +37,12 @@ namespace StringSearch.Groups
             return this.IdentifyGroups(value, characterSets);
         }
 
+        /// <summary>
+        /// Recursively identify groups
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="characterSets"></param>
+        /// <returns></returns>
         private IEnumerable<IGroup> IdentifyGroups(string value, IEnumerable<CharacterSet> characterSets)
         {
             value = value ?? string.Empty;
@@ -66,7 +84,7 @@ namespace StringSearch.Groups
                         IGroup group = null;
                         if (character == ')')
                         {
-                            group = new ConditionGroup() { Index = i, Value = value.Substring(startIndex, length) };
+                            group = new CriterionGroup() { Index = i, Value = value.Substring(startIndex, length) };
                         }
                         else if (character == ']')
                         {
@@ -107,6 +125,10 @@ namespace StringSearch.Groups
             return characterGroups;
         }
 
+        /// <summary>
+        /// Validate the string input is at least vaguely formatted correctly
+        /// </summary>
+        /// <param name="value"></param>
         private void ValidateInput(string value)
         {
             if (!string.IsNullOrWhiteSpace(value))
@@ -128,6 +150,12 @@ namespace StringSearch.Groups
             }
         }
 
+        /// <summary>
+        /// Determines whether the group is nested
+        /// </summary>
+        /// <param name="group"></param>
+        /// <param name="characterSets"></param>
+        /// <returns></returns>
         private bool IsNestedGroup(IGroup group, IEnumerable<CharacterSet> characterSets)
         {
             var isNestedGroup = false;
@@ -142,10 +170,15 @@ namespace StringSearch.Groups
             return isNestedGroup;
         }
 
+        /// <summary>
+        /// Converts a group's value into recognizable tokens
+        /// </summary>
+        /// <param name="group"></param>
+        /// <returns></returns>
         private IEnumerable<IToken> IdentifyTokens(IGroup group)
         {
             ITokenParser tokenParser = null;
-            if (group is ConditionGroup conditionGroup)
+            if (group is CriterionGroup)
             {
                 var groupIdentifier = new GroupIdentifier(group, _operators);
                 if (groupIdentifier.IsRangeCondition())
