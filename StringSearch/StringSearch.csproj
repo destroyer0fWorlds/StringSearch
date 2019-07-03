@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Joel</Authors>
+    <Company>Excelsior Industries</Company>
+    <Description>Utility for converting search API filter strings into a hierarchy of condition objects</Description>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/destroyer0fWorlds/StringSearch</PackageProjectUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Joel\Source\Repos\StringSearch\StringSearch\StringSearch.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
