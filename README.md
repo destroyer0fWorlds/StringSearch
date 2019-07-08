@@ -11,7 +11,7 @@ will be parsed as two criteria joined by an AND condition.
 [GitHub Wiki](https://github.com/destroyer0fWorlds/StringSearch/wiki)
 
 ### Nuget
-Coming soon!
+Browse: https://www.nuget.org/packages/StringSearch/ or Download: `Install-Package StringSearch -Version 1.0.0`
 
 ### License
 [MIT](https://opensource.org/licenses/MIT) - happy coding!
