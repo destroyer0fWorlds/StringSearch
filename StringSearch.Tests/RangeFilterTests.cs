@@ -146,27 +146,5 @@ namespace StringSearch.Tests
             Assert.Equal("1[0]0", criterion.StartValue);
             Assert.Equal("[[200]]]", criterion.EndValue);
         }
-
-        [Fact]
-        public void Range_Filter_Should_Parse_Hyphen_Successfully()
-        {
-            // Arrange
-            // "[" and "]" are used to identify operators
-            var filter = "(-U-s-e-r-I-d-[between]100-20-0)";
-
-            // Act
-            var parseResults = new Parser().Parse(filter);
-
-            // Assert
-            Assert.NotNull(parseResults);
-            Assert.NotEmpty(parseResults);
-            Assert.Single(parseResults);
-            Assert.Equal(typeof(RangeCriterion), parseResults.ElementAt(0).GetType());
-            var criterion = ((RangeCriterion)parseResults.ElementAt(0));
-            Assert.Equal("-U-s-e-r-I-d-", criterion.Name);
-            Assert.Equal(ConditionOperatorType.Between, criterion.Operator);
-            Assert.Equal("100", criterion.StartValue);
-            Assert.Equal("20", criterion.EndValue);
-        }
     }
 }
