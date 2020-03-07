@@ -9,15 +9,13 @@ namespace StringSearch.Tokens
     /// </summary>
     class RangeTokenParser : TokenParser
     {
-        private readonly HashSet<IOperator> _operators;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="RangeTokenParser"/> class
         /// </summary>
         /// <param name="operators"></param>
-        public RangeTokenParser(HashSet<IOperator> operators)
+        public RangeTokenParser(HashSet<IOperator> operators) : base(operators)
         {
-            _operators = operators;
+            
         }
 
         /// <summary>
@@ -29,12 +27,37 @@ namespace StringSearch.Tokens
         {
             var sanitizedValue = this.FormatValue(value);
 
-            var components = sanitizedValue.Split(new[] { "[", "]", "-" }, StringSplitOptions.RemoveEmptyEntries);
-            this.ValidateComponents(components);
+            // Initial split
+            var rangeComponents = this.SplitValue(sanitizedValue);
+            if (rangeComponents.Length != 3)
+            {
+                throw new FormatException("Invalid range. A range condition must be in the format: '(property[operator]start-end)'");
+            }
+
+            // Split the values
+            var rangeValue = rangeComponents[2];
+            var valueComponents = rangeValue.Split(new[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
+            if (valueComponents.Length < 2)
+            {
+                throw new FormatException($"Invalid range. Value '{rangeValue}' does not contain a hyphen. A range's start and end values must be separated by a hyphen like '(property[operator]start-end)'");
+            }
+            else if (valueComponents.Length > 2)
+            {
+                throw new FormatException($"Invalid range. Value '{rangeValue}' has too many hyphens. A range's start and end values must be separated by a single hyphen like '(property[operator]start-end)'");
+            }
+
+            // Merge all the components
+            var components = new string[]
+            {
+                rangeComponents[0], // 0 - name
+                rangeComponents[1], // 1 - op
+                valueComponents[0], // 2 - start value
+                valueComponents[1]  // 3 - end value
+            };
 
             // Convert from TokenType to ConditionType
             var op = components[1];
-            var @operator = _operators.FirstOrDefault(i => i.Value == op);
+            var @operator = this.Operators.FirstOrDefault(i => i.Value == op);
             if (@operator == null)
             {
                 throw new NotSupportedException($"No operator exists for '{op}'");
@@ -47,14 +70,6 @@ namespace StringSearch.Tokens
                 new OperatorToken(type),
                 new RangeToken(startValue: components[2], endValue: components[3])
             };
-        }
-
-        protected override void ValidateComponents(string[] components)
-        {
-            if (components.Length != 4)
-            {
-                throw new FormatException("Invalid condition format. A range condition must be in the format: '(property[operator]start-end)'");
-            }
         }
     }
 }

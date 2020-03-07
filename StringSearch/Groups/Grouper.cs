@@ -30,8 +30,8 @@ namespace StringSearch.Groups
         {
             var characterSets = new List<CharacterSet>()
             {
-                new CharacterSet('(', ')'),
-                new CharacterSet('[', ']')
+                //new CharacterSet('[', ']'),
+                new CharacterSet('(', ')')
             };
 
             return this.IdentifyGroups(value, characterSets);

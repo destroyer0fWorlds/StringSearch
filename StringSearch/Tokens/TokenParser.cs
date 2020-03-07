@@ -9,6 +9,17 @@ namespace StringSearch.Tokens
     /// </summary>
     abstract class TokenParser : ITokenParser
     {
+        public HashSet<IOperator> Operators { get; private set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TokenParser"/> class
+        /// </summary>
+        /// <param name="operators"></param>
+        public TokenParser(HashSet<IOperator> operators)
+        {
+            this.Operators = operators;
+        }
+
         /// <summary>
         /// Parse a string value into tokens
         /// </summary>
@@ -35,6 +46,37 @@ namespace StringSearch.Tokens
             }
 
             return value;
+        }
+
+        /// <summary>
+        /// Split the incoming value into raw components
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        protected string[] SplitValue(string value)
+        {
+            value = (value ?? string.Empty).Trim();
+            
+            foreach(var @operator in this.Operators)
+            {
+                var opToken = $"[{@operator.Value}]";
+                if (value.Contains(opToken))
+                {
+                    var opLength = opToken.Length;
+                    var opIndex = value.IndexOf(opToken);
+
+                    var name = value.Substring(0, opIndex);
+                    var op = value
+                        .Substring(opIndex, opLength)
+                        .Replace("[", string.Empty)
+                        .Replace("]", string.Empty);
+                    var val = value.Substring(opIndex + opLength);
+
+                    return new string[] { name, op, val };
+                }
+            }
+
+            return new string[0];
         }
 
         /// <summary>
@@ -98,11 +140,5 @@ namespace StringSearch.Tokens
             }
             return conditionType;
         }
-
-        /// <summary>
-        /// Validate that the parsed components are of the right size, shape, color, weight, etc.
-        /// </summary>
-        /// <param name="components"></param>
-        protected abstract void ValidateComponents(string[] components);
     }
 }

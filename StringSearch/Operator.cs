@@ -52,7 +52,6 @@ namespace StringSearch
         public override int GetHashCode()
         {
             var hashCode = 38826312;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Value);
             hashCode = hashCode * -1521134295 + Type.GetHashCode();
             return hashCode;
         }

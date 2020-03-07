@@ -18,28 +18,18 @@ namespace StringSearch
         /// </summary>
         public Parser()
         {
-            // To do: make these configurable so user can override with custom tokens
-            _operators = new HashSet<IOperator>()
-            {
-                new Operator("null", OperatorType.IsNull),
-                new Operator("nnull", OperatorType.IsNotNull),
-                new Operator("between", OperatorType.Between),
-                new Operator("nbetween", OperatorType.NotBetween),
-                new Operator("endsw", OperatorType.EndsWith),
-                new Operator("nendsw", OperatorType.DoesNotEndWith),
-                new Operator("startsw", OperatorType.StartsWith),
-                new Operator("nstartsw", OperatorType.DoesNotStartWith),
-                new Operator("like", OperatorType.Like),
-                new Operator("nlike", OperatorType.NotLike),
-                new Operator("eq", OperatorType.Equals),
-                new Operator("neq", OperatorType.NotEquals),
-                new Operator("gt", OperatorType.GreaterThan),
-                new Operator("gte", OperatorType.GreaterThanOrEqualTo),
-                new Operator("lt", OperatorType.LessThan),
-                new Operator("lte", OperatorType.LessThanOrEqualTo),
-                new Operator("and", OperatorType.And),
-                new Operator("or", OperatorType.Or)
-            };
+            _operators = this.InitOperators(null);
+        }
+
+        /// <summary>
+        /// Initialize an instance of a <see cref="Parser"/> class specifying override values
+        /// </summary>
+        /// <param name="operatorOverrides"></param>
+        public Parser(Dictionary<OperatorType, string> operatorOverrides)
+        {
+            if (operatorOverrides == null) { throw new ArgumentNullException(nameof(operatorOverrides), "Operator overrides cannot be null"); }
+            
+            _operators = this.InitOperators(operatorOverrides);
         }
 
         /// <summary>
@@ -54,6 +44,21 @@ namespace StringSearch
         }
 
         /// <summary>
+        /// Parse a filter string
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="operatorOverrides"></param>
+        /// <returns></returns>
+        public IEnumerable<ICriterion> Parse(string filter, Dictionary<OperatorType, string> operatorOverrides)
+        {
+            if (operatorOverrides == null) { throw new ArgumentNullException(nameof(operatorOverrides), "Operator overrides cannot be null"); }
+
+            var operators = this.InitOperators(operatorOverrides);
+            var groups = new Grouper(operators).Group(filter);
+            return this.Parse(groups);
+        }
+
+        /// <summary>
         /// Parse a filter string to a custom type
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -63,6 +68,19 @@ namespace StringSearch
         public T ParseAs<T>(string filter, IConverter<T> converter) where T : class
         {
             return converter.ConvertTo(this.Parse(filter));
+        }
+
+        /// <summary>
+        /// Parse a filter string to a custom type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="filter"></param>
+        /// <param name="converter"></param>
+        /// <param name="operatorOverrides"></param>
+        /// <returns></returns>
+        public T ParseAs<T>(string filter, IConverter<T> converter, Dictionary<OperatorType, string> operatorOverrides) where T : class
+        {
+            return converter.ConvertTo(this.Parse(filter, operatorOverrides));
         }
 
         /// <summary>
@@ -110,6 +128,32 @@ namespace StringSearch
             }
 
             return criteria;
+        }
+
+        private HashSet<IOperator> InitOperators(Dictionary<OperatorType, string> operatorOverrides)
+        {
+            var allOperators = _operators;
+
+            if (allOperators == null)
+            {
+                // Build the defaults
+                var defaultOperators = new HashSet<IOperator>();
+                defaultOperators.UnionWith(DefaultOperators.ConditionOperators);
+                defaultOperators.UnionWith(DefaultOperators.LogicOperators);
+                allOperators = defaultOperators;
+            }
+
+            if (operatorOverrides != null)
+            {
+                // Convert the overrides to something comparable
+                var customOperators = new HashSet<IOperator>(operatorOverrides.Select(i => new Operator() { Type = i.Key, Value = i.Value }));
+
+                // Merge the overrides and defaults. Only use the defaults when an override is not present
+                customOperators.UnionWith(allOperators);
+                allOperators = customOperators;
+            }
+
+            return allOperators;
         }
     }
 }

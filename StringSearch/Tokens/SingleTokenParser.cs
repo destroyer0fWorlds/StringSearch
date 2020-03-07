@@ -9,15 +9,13 @@ namespace StringSearch.Tokens
     /// </summary>
     class SingleTokenParser : TokenParser
     {
-        private readonly HashSet<IOperator> _operators;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="SingleTokenParser"/> class
         /// </summary>
         /// <param name="operators"></param>
-        public SingleTokenParser(HashSet<IOperator> operators)
+        public SingleTokenParser(HashSet<IOperator> operators) : base(operators)
         {
-            _operators = operators;
+            
         }
 
         /// <summary>
@@ -29,12 +27,12 @@ namespace StringSearch.Tokens
         {
             var sanitizedValue = this.FormatValue(value);
 
-            var components = sanitizedValue.Split(new[] { "[", "]" }, StringSplitOptions.RemoveEmptyEntries);
+            var components = this.SplitValue(sanitizedValue);
             this.ValidateComponents(components);
 
             // Convert from TokenType to ConditionType
             var op = components[1];
-            var @operator = _operators.FirstOrDefault(i => i.Value == op);
+            var @operator = this.Operators.FirstOrDefault(i => i.Value == op);
             if (@operator == null)
             {
                 throw new NotSupportedException($"No operator exists for '{op}'");
@@ -49,11 +47,15 @@ namespace StringSearch.Tokens
             };
         }
 
-        protected override void ValidateComponents(string[] components)
+        /// <summary>
+        /// Validate that the parsed components are of the right size, shape, color, weight, etc.
+        /// </summary>
+        /// <param name="components"></param>
+        private void ValidateComponents(string[] components)
         {
             if (components.Length != 3)
             {
-                throw new FormatException("Invalid condition format. A single condition must be in the format: '(property[operator]value)'");
+                throw new FormatException("Invalid format. A single condition must be in the format: '(property[operator]value)'");
             }
         }
     }

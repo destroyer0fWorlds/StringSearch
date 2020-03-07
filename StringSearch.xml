@@ -1,0 +1,716 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StringSearch</name>
+    </assembly>
+    <members>
+        <member name="T:StringSearch.ConditionOperatorType">
+            <summary>
+            Operator type
+            </summary>
+        </member>
+        <member name="T:StringSearch.Criterion">
+            <summary>
+            Base criterion
+            </summary>
+        </member>
+        <member name="P:StringSearch.Criterion.Name">
+            <summary>
+            Property name
+            </summary>
+        </member>
+        <member name="P:StringSearch.Criterion.Operator">
+            <summary>
+            Operator type
+            </summary>
+        </member>
+        <member name="P:StringSearch.Criterion.Value">
+            <summary>
+            Value
+            </summary>
+        </member>
+        <member name="P:StringSearch.Criterion.LogicOperator">
+            <summary>
+            Logic operator indicates how multiple criteria should be combined
+            </summary>
+        </member>
+        <member name="M:StringSearch.Criterion.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Criterion"/> class
+            </summary>
+        </member>
+        <member name="M:StringSearch.Criterion.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Criterion"/> class with the specified name
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:StringSearch.Criterion.#ctor(System.String,StringSearch.ConditionOperatorType,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Criterion"/> class with the specified name, operator, and value
+            </summary>
+            <param name="name"></param>
+            <param name="operator"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:StringSearch.CriterionParser">
+            <summary>
+            Single value criterion parser
+            </summary>
+        </member>
+        <member name="M:StringSearch.CriterionParser.Parse(System.Collections.Generic.IEnumerable{StringSearch.Tokens.IToken})">
+            <summary>
+            Parse a collection of tokens as a criterion
+            </summary>
+            <param name="tokens"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.Groups.CharacterSet">
+            <summary>
+            Represents a set or characters (start and end)
+            </summary>
+        </member>
+        <member name="P:StringSearch.Groups.CharacterSet.StartCharacter">
+            <summary>
+            Start char
+            </summary>
+        </member>
+        <member name="P:StringSearch.Groups.CharacterSet.EndCharacter">
+            <summary>
+            End char
+            </summary>
+        </member>
+        <member name="M:StringSearch.Groups.CharacterSet.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Groups.CharacterSet"/> class
+            </summary>
+        </member>
+        <member name="M:StringSearch.Groups.CharacterSet.#ctor(System.Char,System.Char)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Groups.CharacterSet"/> class for the given start and end characters
+            </summary>
+            <param name="startCharacter"></param>
+            <param name="endCharacter"></param>
+        </member>
+        <member name="T:StringSearch.Groups.CriterionGroup">
+            <summary>
+            Criterion group
+            </summary>
+        </member>
+        <member name="T:StringSearch.Groups.Group">
+            <summary>
+            Base group
+            </summary>
+        </member>
+        <member name="P:StringSearch.Groups.Group.Index">
+            <summary>
+            Starting index where this group was found in the original string
+            </summary>
+        </member>
+        <member name="P:StringSearch.Groups.Group.Value">
+            <summary>
+            The original string value that this group encapsulates
+            </summary>
+        </member>
+        <member name="P:StringSearch.Groups.Group.NestedGroups">
+            <summary>
+            Nested groups
+            </summary>
+        </member>
+        <member name="P:StringSearch.Groups.Group.HasNestedGroups">
+            <summary>
+            Indicates whether this group is made up of nested groups
+            </summary>
+        </member>
+        <member name="P:StringSearch.Groups.Group.Tokens">
+            <summary>
+            The original <see cref="P:StringSearch.Groups.Group.Value"/> field parsed as meaningful tokens
+            </summary>
+        </member>
+        <member name="T:StringSearch.Groups.Grouper">
+            <summary>
+            Parses a string into logical groups
+            </summary>
+        </member>
+        <member name="M:StringSearch.Groups.Grouper.#ctor(System.Collections.Generic.HashSet{StringSearch.IOperator})">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Groups.Grouper"/> class
+            </summary>
+            <param name="operators"></param>
+        </member>
+        <member name="M:StringSearch.Groups.Grouper.Group(System.String)">
+            <summary>
+            Parses the supplied string into a hierarchy of conditions and operators
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Groups.Grouper.IdentifyGroups(System.String,System.Collections.Generic.IEnumerable{StringSearch.Groups.CharacterSet})">
+            <summary>
+            Recursively identify groups
+            </summary>
+            <param name="value"></param>
+            <param name="characterSets"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Groups.Grouper.ValidateInput(System.String)">
+            <summary>
+            Validate the string input is at least vaguely formatted correctly
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:StringSearch.Groups.Grouper.IsNestedGroup(StringSearch.Groups.IGroup,System.Collections.Generic.IEnumerable{StringSearch.Groups.CharacterSet})">
+            <summary>
+            Determines whether the group is nested
+            </summary>
+            <param name="group"></param>
+            <param name="characterSets"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Groups.Grouper.IdentifyTokens(StringSearch.Groups.IGroup)">
+            <summary>
+            Converts a group's value into recognizable tokens
+            </summary>
+            <param name="group"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.Groups.GroupIdentifier">
+            <summary>
+            Utility for identifying group type
+            </summary>
+        </member>
+        <member name="M:StringSearch.Groups.GroupIdentifier.#ctor(StringSearch.Groups.IGroup,System.Collections.Generic.HashSet{StringSearch.IOperator})">
+            <summary>
+            Initializes a new instances of the <see cref="T:StringSearch.Groups.GroupIdentifier"/> class
+            </summary>
+            <param name="group"></param>
+            <param name="operators"></param>
+        </member>
+        <member name="M:StringSearch.Groups.GroupIdentifier.IsNestedCondition">
+            <summary>
+            Indicates whether this is a nested condition
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Groups.GroupIdentifier.IsRangeCondition">
+            <summary>
+            Indicates whether this is a range condition
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Groups.GroupIdentifier.IsSingleCondition">
+            <summary>
+            Indicates whether this is a single value condition
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.Groups.IGroup">
+            <summary>
+            Represents a group of values that describe a criterion
+            </summary>
+        </member>
+        <member name="P:StringSearch.Groups.IGroup.Index">
+            <summary>
+            Starting index where this group was found in the original string
+            </summary>
+        </member>
+        <member name="P:StringSearch.Groups.IGroup.Value">
+            <summary>
+            The original string value that this group encapsulates
+            </summary>
+        </member>
+        <member name="P:StringSearch.Groups.IGroup.NestedGroups">
+            <summary>
+            Nested groups
+            </summary>
+        </member>
+        <member name="P:StringSearch.Groups.IGroup.Tokens">
+            <summary>
+            The original <see cref="P:StringSearch.Groups.IGroup.Value"/> field parsed as meaningful tokens
+            </summary>
+        </member>
+        <member name="P:StringSearch.Groups.IGroup.HasNestedGroups">
+            <summary>
+            Indicates whether this group is made up of nested groups
+            </summary>
+        </member>
+        <member name="T:StringSearch.Groups.LogicGroup">
+            <summary>
+            And/Or group
+            </summary>
+        </member>
+        <member name="T:StringSearch.IConverter`1">
+            <summary>
+            Custom converter
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:StringSearch.IConverter`1.ConvertTo(System.Collections.Generic.IEnumerable{StringSearch.ICriterion})">
+            <summary>
+            Convert the supplied criteria to a custom type
+            </summary>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.ICriterion">
+            <summary>
+            Represents a criterion
+            </summary>
+        </member>
+        <member name="P:StringSearch.ICriterion.Name">
+            <summary>
+            Property name
+            </summary>
+        </member>
+        <member name="P:StringSearch.ICriterion.LogicOperator">
+            <summary>
+            Operator type
+            </summary>
+        </member>
+        <member name="T:StringSearch.ICriterionParser">
+            <summary>
+            Utility for parsing tokens into criteria
+            </summary>
+        </member>
+        <member name="M:StringSearch.ICriterionParser.Parse(System.Collections.Generic.IEnumerable{StringSearch.Tokens.IToken})">
+            <summary>
+            Parse a collection of tokens as a criterion
+            </summary>
+            <param name="tokens"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.IOperator">
+            <summary>
+            Represents a configured operation
+            </summary>
+        </member>
+        <member name="P:StringSearch.IOperator.Value">
+            <summary>
+            Value
+            </summary>
+        </member>
+        <member name="P:StringSearch.IOperator.Type">
+            <summary>
+            Type
+            </summary>
+        </member>
+        <member name="T:StringSearch.LogicOperatorType">
+            <summary>
+            Logic operator type
+            </summary>
+        </member>
+        <member name="T:StringSearch.NestedCriterion">
+            <summary>
+            Nested criterion
+            </summary>
+        </member>
+        <member name="P:StringSearch.NestedCriterion.Name">
+            <summary>
+            Property name
+            </summary>
+        </member>
+        <member name="P:StringSearch.NestedCriterion.Criteria">
+            <summary>
+            Nested criteria
+            </summary>
+        </member>
+        <member name="P:StringSearch.NestedCriterion.LogicOperator">
+            <summary>
+            Logic operator indicates how multiple criteria should be combined
+            </summary>
+        </member>
+        <member name="M:StringSearch.NestedCriterion.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.NestedCriterion"/> class
+            </summary>
+        </member>
+        <member name="T:StringSearch.Operator">
+            <summary>
+            Base operator
+            </summary>
+        </member>
+        <member name="P:StringSearch.Operator.Value">
+            <summary>
+            Value
+            </summary>
+        </member>
+        <member name="P:StringSearch.Operator.Type">
+            <summary>
+            Type
+            </summary>
+        </member>
+        <member name="M:StringSearch.Operator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Operator"/> class
+            </summary>
+        </member>
+        <member name="M:StringSearch.Operator.#ctor(System.String,StringSearch.OperatorType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Operator"/> class with the supplied value and operation
+            </summary>
+            <param name="value"></param>
+            <param name="operation"></param>
+        </member>
+        <member name="T:StringSearch.OperatorType">
+            <summary>
+            Supported operations
+            </summary>
+        </member>
+        <member name="T:StringSearch.Parser">
+            <summary>
+            Utility for parsing a filter string to a hierarchical structure of objects
+            </summary>
+        </member>
+        <member name="M:StringSearch.Parser.#ctor">
+            <summary>
+            Initialize an instance of a <see cref="T:StringSearch.Parser"/> class
+            </summary>
+        </member>
+        <member name="M:StringSearch.Parser.#ctor(System.Collections.Generic.Dictionary{StringSearch.OperatorType,System.String})">
+            <summary>
+            Initialize an instance of a <see cref="T:StringSearch.Parser"/> class specifying override values
+            </summary>
+            <param name="operatorOverrides"></param>
+        </member>
+        <member name="M:StringSearch.Parser.Parse(System.String)">
+            <summary>
+            Parse a filter string
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Parser.Parse(System.String,System.Collections.Generic.Dictionary{StringSearch.OperatorType,System.String})">
+            <summary>
+            Parse a filter string
+            </summary>
+            <param name="filter"></param>
+            <param name="operatorOverrides"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Parser.ParseAs``1(System.String,StringSearch.IConverter{``0})">
+            <summary>
+            Parse a filter string to a custom type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="filter"></param>
+            <param name="converter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Parser.ParseAs``1(System.String,StringSearch.IConverter{``0},System.Collections.Generic.Dictionary{StringSearch.OperatorType,System.String})">
+            <summary>
+            Parse a filter string to a custom type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="filter"></param>
+            <param name="converter"></param>
+            <param name="operatorOverrides"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Parser.Parse(System.Collections.Generic.IEnumerable{StringSearch.Groups.IGroup})">
+            <summary>
+            Recursively parse a collection of groups into criteria
+            </summary>
+            <param name="groups"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.RangeCriterion">
+            <summary>
+            Range criterion
+            </summary>
+        </member>
+        <member name="P:StringSearch.RangeCriterion.Name">
+            <summary>
+            Property name
+            </summary>
+        </member>
+        <member name="P:StringSearch.RangeCriterion.Operator">
+            <summary>
+            Operator
+            </summary>
+        </member>
+        <member name="P:StringSearch.RangeCriterion.StartValue">
+            <summary>
+            Start value
+            </summary>
+        </member>
+        <member name="P:StringSearch.RangeCriterion.EndValue">
+            <summary>
+            End value
+            </summary>
+        </member>
+        <member name="P:StringSearch.RangeCriterion.LogicOperator">
+            <summary>
+            Logic operator indicates how multiple criteria should be combined
+            </summary>
+        </member>
+        <member name="M:StringSearch.RangeCriterion.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.RangeCriterion"/> class
+            </summary>
+        </member>
+        <member name="M:StringSearch.RangeCriterion.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.RangeCriterion"/> class with the specified name
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:StringSearch.RangeCriterion.#ctor(System.String,StringSearch.ConditionOperatorType,System.Object,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.RangeCriterion"/> class with the specified name, operator, and values
+            </summary>
+            <param name="name"></param>
+            <param name="operator"></param>
+            <param name="startValue"></param>
+            <param name="endValue"></param>
+        </member>
+        <member name="T:StringSearch.RangeCriterionParser">
+            <summary>
+            Range criterion parser
+            </summary>
+        </member>
+        <member name="M:StringSearch.RangeCriterionParser.Parse(System.Collections.Generic.IEnumerable{StringSearch.Tokens.IToken})">
+            <summary>
+            Parse a collection of tokens as a criterion
+            </summary>
+            <param name="tokens"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.Tokens.IToken">
+            <summary>
+            Represents a discrete value
+            </summary>
+        </member>
+        <member name="P:StringSearch.Tokens.IToken.Value">
+            <summary>
+            The original string value
+            </summary>
+        </member>
+        <member name="T:StringSearch.Tokens.ITokenParser">
+            <summary>
+            Utility for parsing tokens out of a string value
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.ITokenParser.Parse(System.String)">
+            <summary>
+            Parse a string value into tokens
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.Tokens.LogicToken">
+            <summary>
+            Logical and/or token
+            </summary>
+        </member>
+        <member name="P:StringSearch.Tokens.LogicToken.Operator">
+            <summary>
+            Logic operator (and/or)
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.LogicToken.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.LogicToken"/> class
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.LogicToken.#ctor(StringSearch.LogicOperatorType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.LogicToken"/> class with the supplied operator
+            </summary>
+            <param name="operator"></param>
+        </member>
+        <member name="T:StringSearch.Tokens.LogicTokenParser">
+            <summary>
+            Utility for parsing and/or tokens
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.LogicTokenParser.#ctor(System.Collections.Generic.HashSet{StringSearch.IOperator})">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.LogicTokenParser"/> class
+            </summary>
+            <param name="operators"></param>
+        </member>
+        <member name="M:StringSearch.Tokens.LogicTokenParser.Parse(System.String)">
+            <summary>
+            Parse a string value into tokens
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.Tokens.NameToken">
+            <summary>
+            Property name token
+            </summary>
+        </member>
+        <member name="P:StringSearch.Tokens.NameToken.Name">
+            <summary>
+            Property name
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.NameToken.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.NameToken"/>
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.NameToken.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.NameToken"/> class with the supplied name
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="T:StringSearch.Tokens.OperatorToken">
+            <summary>
+            Operator token
+            </summary>
+        </member>
+        <member name="P:StringSearch.Tokens.OperatorToken.Operator">
+            <summary>
+            Operator
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.OperatorToken.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.OperatorToken"/>
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.OperatorToken.#ctor(StringSearch.ConditionOperatorType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.OperatorToken"/> class with the supplied operator
+            </summary>
+            <param name="operator"></param>
+        </member>
+        <member name="T:StringSearch.Tokens.RangeToken">
+            <summary>
+            Range token
+            </summary>
+        </member>
+        <member name="P:StringSearch.Tokens.RangeToken.StartValue">
+            <summary>
+            Start value
+            </summary>
+        </member>
+        <member name="P:StringSearch.Tokens.RangeToken.EndValue">
+            <summary>
+            End value
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.RangeToken.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.RangeToken"/>
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.RangeToken.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.RangeToken"/> class with the supplied start and end values
+            </summary>
+            <param name="startValue"></param>
+            <param name="endValue"></param>
+        </member>
+        <member name="T:StringSearch.Tokens.RangeTokenParser">
+            <summary>
+            Utility for parsing range criteria tokens
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.RangeTokenParser.#ctor(System.Collections.Generic.HashSet{StringSearch.IOperator})">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.RangeTokenParser"/> class
+            </summary>
+            <param name="operators"></param>
+        </member>
+        <member name="M:StringSearch.Tokens.RangeTokenParser.Parse(System.String)">
+            <summary>
+            Parse a string value into tokens
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.Tokens.SingleTokenParser">
+            <summary>
+            Utility for parsing single value criteria tokens
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.SingleTokenParser.#ctor(System.Collections.Generic.HashSet{StringSearch.IOperator})">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.SingleTokenParser"/> class
+            </summary>
+            <param name="operators"></param>
+        </member>
+        <member name="M:StringSearch.Tokens.SingleTokenParser.Parse(System.String)">
+            <summary>
+            Parse a string value into tokens
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Tokens.SingleTokenParser.ValidateComponents(System.String[])">
+            <summary>
+            Validate that the parsed components are of the right size, shape, color, weight, etc.
+            </summary>
+            <param name="components"></param>
+        </member>
+        <member name="T:StringSearch.Tokens.Token">
+            <summary>
+            Base token
+            </summary>
+        </member>
+        <member name="P:StringSearch.Tokens.Token.Value">
+            <summary>
+            The original string value
+            </summary>
+        </member>
+        <member name="T:StringSearch.Tokens.TokenParser">
+            <summary>
+            Base token parser
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.TokenParser.#ctor(System.Collections.Generic.HashSet{StringSearch.IOperator})">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.TokenParser"/> class
+            </summary>
+            <param name="operators"></param>
+        </member>
+        <member name="M:StringSearch.Tokens.TokenParser.Parse(System.String)">
+            <summary>
+            Parse a string value into tokens
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Tokens.TokenParser.FormatValue(System.String)">
+            <summary>
+            Format the incoming value
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Tokens.TokenParser.SplitValue(System.String)">
+            <summary>
+            Split the incoming value into raw components
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Tokens.TokenParser.ConvertOperatorTypeToConditionType(StringSearch.OperatorType)">
+            <summary>
+            Convert a <see cref="T:StringSearch.OperatorType"/> enum to a <see cref="T:StringSearch.ConditionOperatorType"/> enum
+            </summary>
+            <param name="tokenType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.Tokens.ValueToken">
+            <summary>
+            Value token
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.ValueToken.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.ValueToken"/>
+            </summary>
+        </member>
+        <member name="M:StringSearch.Tokens.ValueToken.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.ValueToken"/> class with the supplied value
+            </summary>
+            <param name="value"></param>
+        </member>
+    </members>
+</doc>
