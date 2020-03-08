@@ -18,11 +18,7 @@ namespace StringSearch.Tokens
             
         }
 
-        /// <summary>
-        /// Parse a string value into tokens
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <inheritdoc />
         public override IEnumerable<IToken> Parse(string value)
         {
             var sanitizedValue = this.FormatValue(value);

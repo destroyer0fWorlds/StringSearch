@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace StringSearch
 {
     /// <summary>
@@ -9,9 +6,10 @@ namespace StringSearch
     /// </summary>
     public class RangeCriterion : ICriterion
     {
-        /// <summary>
-        /// Property name
-        /// </summary>
+        /// <inheritdoc />
+        public string Raw { get; set; }
+
+        /// <inheritdoc />
         public string Name { get; set; }
 
         /// <summary>
@@ -29,9 +27,7 @@ namespace StringSearch
         /// </summary>
         public object EndValue { get; set; }
 
-        /// <summary>
-        /// Logic operator indicates how multiple criteria should be combined
-        /// </summary>
+        /// <inheritdoc />
         public LogicOperatorType LogicOperator { get; set; }
 
         /// <summary>

@@ -9,6 +9,7 @@ namespace StringSearch.Groups
     /// </summary>
     class CriterionGroup : Group
     {
+        /// <inheritdoc />
         public override bool HasNestedGroups
         {
             get

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using StringSearch.Tokens;
 
 namespace StringSearch.Groups
@@ -10,29 +8,19 @@ namespace StringSearch.Groups
     /// </summary>
     abstract class Group : IGroup
     {
-        /// <summary>
-        /// Starting index where this group was found in the original string
-        /// </summary>
+        /// <inheritdoc />
         public int Index { get; set; }
 
-        /// <summary>
-        /// The original string value that this group encapsulates
-        /// </summary>
+        /// <inheritdoc />
         public string Value { get; set; }
 
-        /// <summary>
-        /// Nested groups
-        /// </summary>
+        /// <inheritdoc />
         public List<IGroup> NestedGroups { get; set; }
 
-        /// <summary>
-        /// Indicates whether this group is made up of nested groups
-        /// </summary>
+        /// <inheritdoc />
         public abstract bool HasNestedGroups { get; }
 
-        /// <summary>
-        /// The original <see cref="Value"/> field parsed as meaningful tokens
-        /// </summary>
+        /// <inheritdoc />
         public List<IToken> Tokens { get; set; }
 
         public override string ToString()

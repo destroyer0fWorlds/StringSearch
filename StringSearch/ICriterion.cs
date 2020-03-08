@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace StringSearch
 {
     /// <summary>
@@ -10,12 +7,17 @@ namespace StringSearch
     public interface ICriterion
     {
         /// <summary>
+        /// Raw input
+        /// </summary>
+        string Raw { get; set; }
+
+        /// <summary>
         /// Property name
         /// </summary>
         string Name { get; set; }
 
         /// <summary>
-        /// Operator type
+        /// Logic operator indicates how multiple criteria should be combined
         /// </summary>
         LogicOperatorType LogicOperator { get; set; }
     }

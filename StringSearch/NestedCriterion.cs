@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace StringSearch
 {
@@ -9,9 +7,10 @@ namespace StringSearch
     /// </summary>
     public class NestedCriterion : ICriterion
     {
-        /// <summary>
-        /// Property name
-        /// </summary>
+        /// <inheritdoc />
+        public string Raw { get; set; }
+
+        /// <inheritdoc />
         public string Name { get; set; }
 
         /// <summary>
@@ -19,9 +18,7 @@ namespace StringSearch
         /// </summary>
         public IEnumerable<ICriterion> Criteria { get; set; }
 
-        /// <summary>
-        /// Logic operator indicates how multiple criteria should be combined
-        /// </summary>
+        /// <inheritdoc />
         public LogicOperatorType LogicOperator { get; set; }
 
         /// <summary>

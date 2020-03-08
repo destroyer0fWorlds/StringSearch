@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace StringSearch
 {
     /// <summary>
@@ -9,7 +6,13 @@ namespace StringSearch
     /// </summary>
     public enum LogicOperatorType
     {
+        /// <summary>
+        /// And
+        /// </summary>
         And = 0,
+        /// <summary>
+        /// Or
+        /// </summary>
         Or = 1
     }
 }

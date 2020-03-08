@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using StringSearch.Tokens;
 
 namespace StringSearch
@@ -10,11 +8,7 @@ namespace StringSearch
     /// </summary>
     class RangeCriterionParser : ICriterionParser
     {
-        /// <summary>
-        /// Parse a collection of tokens as a criterion
-        /// </summary>
-        /// <param name="tokens"></param>
-        /// <returns></returns>
+        /// <inheritdoc />
         public ICriterion Parse(IEnumerable<IToken> tokens)
         {
             var rangeCriterion = new RangeCriterion();

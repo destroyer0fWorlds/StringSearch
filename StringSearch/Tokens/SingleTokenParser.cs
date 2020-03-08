@@ -18,17 +18,16 @@ namespace StringSearch.Tokens
             
         }
 
-        /// <summary>
-        /// Parse a string value into tokens
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <inheritdoc />
         public override IEnumerable<IToken> Parse(string value)
         {
             var sanitizedValue = this.FormatValue(value);
 
             var components = this.SplitValue(sanitizedValue);
-            this.ValidateComponents(components);
+            if (components.Length != 3)
+            {
+                throw new FormatException("Invalid format. A single condition must be in the format: '(property[operator]value)'");
+            }
 
             // Convert from TokenType to ConditionType
             var op = components[1];
@@ -45,18 +44,6 @@ namespace StringSearch.Tokens
                 new OperatorToken(type),
                 new ValueToken(components[2])
             };
-        }
-
-        /// <summary>
-        /// Validate that the parsed components are of the right size, shape, color, weight, etc.
-        /// </summary>
-        /// <param name="components"></param>
-        private void ValidateComponents(string[] components)
-        {
-            if (components.Length != 3)
-            {
-                throw new FormatException("Invalid format. A single condition must be in the format: '(property[operator]value)'");
-            }
         }
     }
 }

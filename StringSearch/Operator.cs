@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace StringSearch
 {
     /// <summary>
@@ -9,14 +6,10 @@ namespace StringSearch
     /// </summary>
     public class Operator : IOperator
     {
-        /// <summary>
-        /// Value
-        /// </summary>
+        /// <inheritdoc />
         public string Value { get; set; }
 
-        /// <summary>
-        /// Type
-        /// </summary>
+        /// <inheritdoc />
         public OperatorType Type { get; set; }
 
         /// <summary>
@@ -38,17 +31,20 @@ namespace StringSearch
             Type = operation;
         }
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return this.Value;
         }
 
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             var otherOp = (Operator)obj;
             return this.Type == otherOp.Type;
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             var hashCode = 38826312;

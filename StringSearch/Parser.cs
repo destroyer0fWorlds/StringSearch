@@ -113,6 +113,7 @@ namespace StringSearch
                             criterionParser = new CriterionParser();
                         }
                         criterion = criterionParser.Parse(group.Tokens);
+                        criterion.Raw = group.Value;
                     }
 
                     // Join multiple conditions with a logical And/Or
@@ -130,6 +131,11 @@ namespace StringSearch
             return criteria;
         }
 
+        /// <summary>
+        /// Initialize the list of operators by combining all available into a single collection
+        /// </summary>
+        /// <param name="operatorOverrides"></param>
+        /// <returns></returns>
         private HashSet<IOperator> InitOperators(Dictionary<OperatorType, string> operatorOverrides)
         {
             var allOperators = _operators;

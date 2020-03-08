@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace StringSearch.Tokens
 {
@@ -20,11 +18,7 @@ namespace StringSearch.Tokens
             this.Operators = operators;
         }
 
-        /// <summary>
-        /// Parse a string value into tokens
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <inheritdoc />
         public abstract IEnumerable<IToken> Parse(string value);
 
         /// <summary>

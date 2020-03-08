@@ -9,6 +9,7 @@ namespace StringSearch.Groups
     /// </summary>
     class LogicGroup : Group
     {
+        /// <inheritdoc />
         public override bool HasNestedGroups => false;
     }
 }
