@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StringSearch.Converters.TypeSearchLib</name>
+    </assembly>
+    <members>
+        <member name="T:StringSearch.Converters.TypeSearchLib.TypeSearchConverter`1">
+            <summary>
+            Convert the results of <see cref="N:StringSearch"/> (<see cref="T:StringSearch.ICriterion"/>) to <see cref="N:TypeSearch"/>.<see cref="T:TypeSearch.WhereCriteria`1"/>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:StringSearch.Converters.TypeSearchLib.TypeSearchConverter`1.ConvertTo(System.Collections.Generic.IEnumerable{StringSearch.ICriterion})">
+            <inheritdoc />
+        </member>
+        <member name="M:StringSearch.Converters.TypeSearchLib.TypeSearchConverter`1.ConvertToSearchDefintionRecursively(System.Collections.Generic.IEnumerable{StringSearch.ICriterion})">
+            <summary>
+            Recursively convert to a collection of TypeSearch criteria
+            </summary>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Converters.TypeSearchLib.TypeSearchConverter`1.ConvertConditionTypeToSingleType(StringSearch.ConditionOperatorType)">
+            <summary>
+            Convert a <see cref="N:StringSearch"/> <see cref="T:StringSearch.ConditionOperatorType"/> to a <see cref="N:TypeSearch"/> <see cref="T:TypeSearch.Criteria.SingleOperator"/>
+            </summary>
+            <param name="conditionType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Converters.TypeSearchLib.TypeSearchConverter`1.ConvertConditionTypeToRangeType(StringSearch.ConditionOperatorType)">
+            <summary>
+            Convert a <see cref="N:StringSearch"/> <see cref="T:StringSearch.ConditionOperatorType"/> to a <see cref="N:TypeSearch"/> <see cref="T:TypeSearch.Criteria.RangeOperator"/>
+            </summary>
+            <param name="conditionType"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

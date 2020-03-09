@@ -9,15 +9,96 @@
             Operator type
             </summary>
         </member>
+        <member name="F:StringSearch.ConditionOperatorType.Equals">
+            <summary>
+            Is equal to
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.NotEquals">
+            <summary>
+            Is not equal to
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.Like">
+            <summary>
+            Is like
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.NotLike">
+            <summary>
+            Is not like
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.GreaterThan">
+            <summary>
+            Is greater than
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.GreaterThanOrEqualTo">
+            <summary>
+            Is greater than or equal to
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.LessThan">
+            <summary>
+            Is less than
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.LessThanOrEqualTo">
+            <summary>
+            Is less than or equal to
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.IsNull">
+            <summary>
+            Is null
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.IsNotNull">
+            <summary>
+            Is not null
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.StartsWith">
+            <summary>
+            Starts with
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.DoesNotStartWith">
+            <summary>
+            Does not start with
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.EndsWith">
+            <summary>
+            Ends with
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.DoesNotEndWith">
+            <summary>
+            Does not end with
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.Between">
+            <summary>
+            Is between
+            </summary>
+        </member>
+        <member name="F:StringSearch.ConditionOperatorType.NotBetween">
+            <summary>
+            Is not between
+            </summary>
+        </member>
         <member name="T:StringSearch.Criterion">
             <summary>
             Base criterion
             </summary>
         </member>
+        <member name="P:StringSearch.Criterion.Raw">
+            <inheritdoc />
+        </member>
         <member name="P:StringSearch.Criterion.Name">
-            <summary>
-            Property name
-            </summary>
+            <inheritdoc />
         </member>
         <member name="P:StringSearch.Criterion.Operator">
             <summary>
@@ -30,9 +111,7 @@
             </summary>
         </member>
         <member name="P:StringSearch.Criterion.LogicOperator">
-            <summary>
-            Logic operator indicates how multiple criteria should be combined
-            </summary>
+            <inheritdoc />
         </member>
         <member name="M:StringSearch.Criterion.#ctor">
             <summary>
@@ -59,11 +138,7 @@
             </summary>
         </member>
         <member name="M:StringSearch.CriterionParser.Parse(System.Collections.Generic.IEnumerable{StringSearch.Tokens.IToken})">
-            <summary>
-            Parse a collection of tokens as a criterion
-            </summary>
-            <param name="tokens"></param>
-            <returns></returns>
+            <inheritdoc />
         </member>
         <member name="T:StringSearch.Groups.CharacterSet">
             <summary>
@@ -97,82 +172,28 @@
             Criterion group
             </summary>
         </member>
+        <member name="P:StringSearch.Groups.CriterionGroup.HasNestedGroups">
+            <inheritdoc />
+        </member>
         <member name="T:StringSearch.Groups.Group">
             <summary>
             Base group
             </summary>
         </member>
         <member name="P:StringSearch.Groups.Group.Index">
-            <summary>
-            Starting index where this group was found in the original string
-            </summary>
+            <inheritdoc />
         </member>
         <member name="P:StringSearch.Groups.Group.Value">
-            <summary>
-            The original string value that this group encapsulates
-            </summary>
+            <inheritdoc />
         </member>
         <member name="P:StringSearch.Groups.Group.NestedGroups">
-            <summary>
-            Nested groups
-            </summary>
+            <inheritdoc />
         </member>
         <member name="P:StringSearch.Groups.Group.HasNestedGroups">
-            <summary>
-            Indicates whether this group is made up of nested groups
-            </summary>
+            <inheritdoc />
         </member>
         <member name="P:StringSearch.Groups.Group.Tokens">
-            <summary>
-            The original <see cref="P:StringSearch.Groups.Group.Value"/> field parsed as meaningful tokens
-            </summary>
-        </member>
-        <member name="T:StringSearch.Groups.Grouper">
-            <summary>
-            Parses a string into logical groups
-            </summary>
-        </member>
-        <member name="M:StringSearch.Groups.Grouper.#ctor(System.Collections.Generic.HashSet{StringSearch.IOperator})">
-            <summary>
-            Initializes a new instance of the <see cref="T:StringSearch.Groups.Grouper"/> class
-            </summary>
-            <param name="operators"></param>
-        </member>
-        <member name="M:StringSearch.Groups.Grouper.Group(System.String)">
-            <summary>
-            Parses the supplied string into a hierarchy of conditions and operators
-            </summary>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:StringSearch.Groups.Grouper.IdentifyGroups(System.String,System.Collections.Generic.IEnumerable{StringSearch.Groups.CharacterSet})">
-            <summary>
-            Recursively identify groups
-            </summary>
-            <param name="value"></param>
-            <param name="characterSets"></param>
-            <returns></returns>
-        </member>
-        <member name="M:StringSearch.Groups.Grouper.ValidateInput(System.String)">
-            <summary>
-            Validate the string input is at least vaguely formatted correctly
-            </summary>
-            <param name="value"></param>
-        </member>
-        <member name="M:StringSearch.Groups.Grouper.IsNestedGroup(StringSearch.Groups.IGroup,System.Collections.Generic.IEnumerable{StringSearch.Groups.CharacterSet})">
-            <summary>
-            Determines whether the group is nested
-            </summary>
-            <param name="group"></param>
-            <param name="characterSets"></param>
-            <returns></returns>
-        </member>
-        <member name="M:StringSearch.Groups.Grouper.IdentifyTokens(StringSearch.Groups.IGroup)">
-            <summary>
-            Converts a group's value into recognizable tokens
-            </summary>
-            <param name="group"></param>
-            <returns></returns>
+            <inheritdoc />
         </member>
         <member name="T:StringSearch.Groups.GroupIdentifier">
             <summary>
@@ -202,6 +223,53 @@
             <summary>
             Indicates whether this is a single value condition
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.Groups.GroupParser">
+            <summary>
+            Parses a string into logical groups
+            </summary>
+        </member>
+        <member name="M:StringSearch.Groups.GroupParser.#ctor(System.Collections.Generic.HashSet{StringSearch.IOperator})">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Groups.GroupParser"/> class
+            </summary>
+            <param name="operators"></param>
+        </member>
+        <member name="M:StringSearch.Groups.GroupParser.Parse(System.String)">
+            <summary>
+            Parses the supplied string into a hierarchy of conditions and operators
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Groups.GroupParser.RecursiveParse(System.String)">
+            <summary>
+            Recursively parse a string value into groups
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Groups.GroupParser.IdentifyGroups(System.String)">
+            <summary>
+            Process a string, attempting to break it into more recognizable components
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Groups.GroupParser.Split(System.String[],System.String)">
+            <summary>
+            Further slit a collection of strings into multiple sub strings using the supplied value
+            </summary>
+            <param name="values"></param>
+            <param name="splitValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Groups.GroupParser.ParseTokens(StringSearch.Groups.IGroup)">
+            <summary>
+            Converts a group's value into recognizable tokens
+            </summary>
+            <param name="group"></param>
             <returns></returns>
         </member>
         <member name="T:StringSearch.Groups.IGroup">
@@ -239,6 +307,9 @@
             And/Or group
             </summary>
         </member>
+        <member name="P:StringSearch.Groups.LogicGroup.HasNestedGroups">
+            <inheritdoc />
+        </member>
         <member name="T:StringSearch.IConverter`1">
             <summary>
             Custom converter
@@ -257,6 +328,11 @@
             Represents a criterion
             </summary>
         </member>
+        <member name="P:StringSearch.ICriterion.Raw">
+            <summary>
+            Raw input
+            </summary>
+        </member>
         <member name="P:StringSearch.ICriterion.Name">
             <summary>
             Property name
@@ -264,7 +340,7 @@
         </member>
         <member name="P:StringSearch.ICriterion.LogicOperator">
             <summary>
-            Operator type
+            Logic operator indicates how multiple criteria should be combined
             </summary>
         </member>
         <member name="T:StringSearch.ICriterionParser">
@@ -299,15 +375,26 @@
             Logic operator type
             </summary>
         </member>
+        <member name="F:StringSearch.LogicOperatorType.And">
+            <summary>
+            And
+            </summary>
+        </member>
+        <member name="F:StringSearch.LogicOperatorType.Or">
+            <summary>
+            Or
+            </summary>
+        </member>
         <member name="T:StringSearch.NestedCriterion">
             <summary>
             Nested criterion
             </summary>
         </member>
+        <member name="P:StringSearch.NestedCriterion.Raw">
+            <inheritdoc />
+        </member>
         <member name="P:StringSearch.NestedCriterion.Name">
-            <summary>
-            Property name
-            </summary>
+            <inheritdoc />
         </member>
         <member name="P:StringSearch.NestedCriterion.Criteria">
             <summary>
@@ -315,9 +402,7 @@
             </summary>
         </member>
         <member name="P:StringSearch.NestedCriterion.LogicOperator">
-            <summary>
-            Logic operator indicates how multiple criteria should be combined
-            </summary>
+            <inheritdoc />
         </member>
         <member name="M:StringSearch.NestedCriterion.#ctor">
             <summary>
@@ -330,14 +415,10 @@
             </summary>
         </member>
         <member name="P:StringSearch.Operator.Value">
-            <summary>
-            Value
-            </summary>
+            <inheritdoc />
         </member>
         <member name="P:StringSearch.Operator.Type">
-            <summary>
-            Type
-            </summary>
+            <inheritdoc />
         </member>
         <member name="M:StringSearch.Operator.#ctor">
             <summary>
@@ -351,9 +432,108 @@
             <param name="value"></param>
             <param name="operation"></param>
         </member>
+        <member name="M:StringSearch.Operator.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:StringSearch.Operator.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:StringSearch.Operator.GetHashCode">
+            <inheritdoc />
+        </member>
         <member name="T:StringSearch.OperatorType">
             <summary>
             Supported operations
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.Equals">
+            <summary>
+            Is equal to
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.NotEquals">
+            <summary>
+            Is not equal to
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.Like">
+            <summary>
+            Is like
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.NotLike">
+            <summary>
+            Is not like
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.GreaterThan">
+            <summary>
+            Is greater than
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.GreaterThanOrEqualTo">
+            <summary>
+            Is greater than or equal to
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.LessThan">
+            <summary>
+            Is less than
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.LessThanOrEqualTo">
+            <summary>
+            Is less than or equal to
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.IsNull">
+            <summary>
+            Is null
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.IsNotNull">
+            <summary>
+            Is not null
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.StartsWith">
+            <summary>
+            Starts with
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.DoesNotStartWith">
+            <summary>
+            Does not start with
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.EndsWith">
+            <summary>
+            Ends with
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.DoesNotEndWith">
+            <summary>
+            Does not end with
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.Between">
+            <summary>
+            Is between
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.NotBetween">
+            <summary>
+            Is not between
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.And">
+            <summary>
+            And
+            </summary>
+        </member>
+        <member name="F:StringSearch.OperatorType.Or">
+            <summary>
+            Or
             </summary>
         </member>
         <member name="T:StringSearch.Parser">
@@ -366,11 +546,25 @@
             Initialize an instance of a <see cref="T:StringSearch.Parser"/> class
             </summary>
         </member>
+        <member name="M:StringSearch.Parser.#ctor(System.Collections.Generic.Dictionary{StringSearch.OperatorType,System.String})">
+            <summary>
+            Initialize an instance of a <see cref="T:StringSearch.Parser"/> class specifying override values
+            </summary>
+            <param name="operatorOverrides"></param>
+        </member>
         <member name="M:StringSearch.Parser.Parse(System.String)">
             <summary>
             Parse a filter string
             </summary>
             <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Parser.Parse(System.String,System.Collections.Generic.Dictionary{StringSearch.OperatorType,System.String})">
+            <summary>
+            Parse a filter string
+            </summary>
+            <param name="filter"></param>
+            <param name="operatorOverrides"></param>
             <returns></returns>
         </member>
         <member name="M:StringSearch.Parser.ParseAs``1(System.String,StringSearch.IConverter{``0})">
@@ -382,6 +576,16 @@
             <param name="converter"></param>
             <returns></returns>
         </member>
+        <member name="M:StringSearch.Parser.ParseAs``1(System.String,StringSearch.IConverter{``0},System.Collections.Generic.Dictionary{StringSearch.OperatorType,System.String})">
+            <summary>
+            Parse a filter string to a custom type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="filter"></param>
+            <param name="converter"></param>
+            <param name="operatorOverrides"></param>
+            <returns></returns>
+        </member>
         <member name="M:StringSearch.Parser.Parse(System.Collections.Generic.IEnumerable{StringSearch.Groups.IGroup})">
             <summary>
             Recursively parse a collection of groups into criteria
@@ -389,15 +593,23 @@
             <param name="groups"></param>
             <returns></returns>
         </member>
+        <member name="M:StringSearch.Parser.InitOperators(System.Collections.Generic.Dictionary{StringSearch.OperatorType,System.String})">
+            <summary>
+            Initialize the list of operators by combining all available into a single collection
+            </summary>
+            <param name="operatorOverrides"></param>
+            <returns></returns>
+        </member>
         <member name="T:StringSearch.RangeCriterion">
             <summary>
             Range criterion
             </summary>
         </member>
+        <member name="P:StringSearch.RangeCriterion.Raw">
+            <inheritdoc />
+        </member>
         <member name="P:StringSearch.RangeCriterion.Name">
-            <summary>
-            Property name
-            </summary>
+            <inheritdoc />
         </member>
         <member name="P:StringSearch.RangeCriterion.Operator">
             <summary>
@@ -415,9 +627,7 @@
             </summary>
         </member>
         <member name="P:StringSearch.RangeCriterion.LogicOperator">
-            <summary>
-            Logic operator indicates how multiple criteria should be combined
-            </summary>
+            <inheritdoc />
         </member>
         <member name="M:StringSearch.RangeCriterion.#ctor">
             <summary>
@@ -445,11 +655,7 @@
             </summary>
         </member>
         <member name="M:StringSearch.RangeCriterionParser.Parse(System.Collections.Generic.IEnumerable{StringSearch.Tokens.IToken})">
-            <summary>
-            Parse a collection of tokens as a criterion
-            </summary>
-            <param name="tokens"></param>
-            <returns></returns>
+            <inheritdoc />
         </member>
         <member name="T:StringSearch.Tokens.IToken">
             <summary>
@@ -506,11 +712,7 @@
             <param name="operators"></param>
         </member>
         <member name="M:StringSearch.Tokens.LogicTokenParser.Parse(System.String)">
-            <summary>
-            Parse a string value into tokens
-            </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <inheritdoc />
         </member>
         <member name="T:StringSearch.Tokens.NameToken">
             <summary>
@@ -593,11 +795,7 @@
             <param name="operators"></param>
         </member>
         <member name="M:StringSearch.Tokens.RangeTokenParser.Parse(System.String)">
-            <summary>
-            Parse a string value into tokens
-            </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <inheritdoc />
         </member>
         <member name="T:StringSearch.Tokens.SingleTokenParser">
             <summary>
@@ -611,11 +809,7 @@
             <param name="operators"></param>
         </member>
         <member name="M:StringSearch.Tokens.SingleTokenParser.Parse(System.String)">
-            <summary>
-            Parse a string value into tokens
-            </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <inheritdoc />
         </member>
         <member name="T:StringSearch.Tokens.Token">
             <summary>
@@ -623,25 +817,32 @@
             </summary>
         </member>
         <member name="P:StringSearch.Tokens.Token.Value">
-            <summary>
-            The original string value
-            </summary>
+            <inheritdoc />
         </member>
         <member name="T:StringSearch.Tokens.TokenParser">
             <summary>
             Base token parser
             </summary>
         </member>
-        <member name="M:StringSearch.Tokens.TokenParser.Parse(System.String)">
+        <member name="M:StringSearch.Tokens.TokenParser.#ctor(System.Collections.Generic.HashSet{StringSearch.IOperator})">
             <summary>
-            Parse a string value into tokens
+            Initializes a new instance of the <see cref="T:StringSearch.Tokens.TokenParser"/> class
             </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <param name="operators"></param>
+        </member>
+        <member name="M:StringSearch.Tokens.TokenParser.Parse(System.String)">
+            <inheritdoc />
         </member>
         <member name="M:StringSearch.Tokens.TokenParser.FormatValue(System.String)">
             <summary>
             Format the incoming value
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Tokens.TokenParser.SplitValue(System.String)">
+            <summary>
+            Split the incoming value into raw components
             </summary>
             <param name="value"></param>
             <returns></returns>
@@ -652,12 +853,6 @@
             </summary>
             <param name="tokenType"></param>
             <returns></returns>
-        </member>
-        <member name="M:StringSearch.Tokens.TokenParser.ValidateComponents(System.String[])">
-            <summary>
-            Validate that the parsed components are of the right size, shape, color, weight, etc.
-            </summary>
-            <param name="components"></param>
         </member>
         <member name="T:StringSearch.Tokens.ValueToken">
             <summary>
