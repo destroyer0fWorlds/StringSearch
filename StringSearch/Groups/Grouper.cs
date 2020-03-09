@@ -30,7 +30,7 @@ namespace StringSearch.Groups
         {
             var characterSets = new List<CharacterSet>()
             {
-                //new CharacterSet('[', ']'),
+                new CharacterSet('[', ']'),
                 new CharacterSet('(', ')')
             };
 

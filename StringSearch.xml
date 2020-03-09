@@ -227,6 +227,14 @@
             </summary>
             <param name="value"></param>
         </member>
+        <member name="M:StringSearch.Groups.Grouper.IsNestedGroup(StringSearch.Groups.IGroup,System.Collections.Generic.IEnumerable{StringSearch.Groups.CharacterSet})">
+            <summary>
+            Determines whether the group is nested
+            </summary>
+            <param name="group"></param>
+            <param name="characterSets"></param>
+            <returns></returns>
+        </member>
         <member name="M:StringSearch.Groups.Grouper.IdentifyTokens(StringSearch.Groups.IGroup)">
             <summary>
             Converts a group's value into recognizable tokens

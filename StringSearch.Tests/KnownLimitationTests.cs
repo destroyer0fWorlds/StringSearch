@@ -14,7 +14,23 @@ namespace StringSearch.Tests
             // Condition groups are expected to be surrounded by a single set of parentheses - extras cause problems.
 
             // Arrange
-            var filter = "(Description[like]special characters: '@', '#', '[', '{', '(')";
+            var filter = "(Description[like]special characters: '@', '#', '(', '{')";
+
+            // Act
+            Action act = () => { var parseResults = new Parser().Parse(filter); };
+
+            // Assert
+            Assert.Throws<FormatException>(act);
+        }
+
+        [Fact]
+        public void Filter_Cannot_Contain_Jagged_Square_Braces()
+        {
+            // "[" and "]" are special characters.
+            // Logic operators are expected to be surrounded by a single set of square braces - extras cause problems.
+
+            // Arrange
+            var filter = "(Description[like]special characters: '@', '#', '[', '{')";
 
             // Act
             Action act = () => { var parseResults = new Parser().Parse(filter); };
