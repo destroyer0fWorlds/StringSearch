@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringSearch.Tests", "Strin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringSearch.Converters.TypeSearchLib", "StringSearch.Converters.TypeSearchLib\StringSearch.Converters.TypeSearchLib.csproj", "{7D551991-EB92-4931-8D26-1D0410EFA8E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringSearch.Converters.TypeSearchLib.Tests", "StringSearch.Converters.TypeSearchLib.Tests\StringSearch.Converters.TypeSearchLib.Tests.csproj", "{87951442-943C-49A9-9CDB-D28A0E056DF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringSearch.Converters.TypeSearchLib.Tests", "StringSearch.Converters.TypeSearchLib.Tests\StringSearch.Converters.TypeSearchLib.Tests.csproj", "{87951442-943C-49A9-9CDB-D28A0E056DF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B03707BC-953E-4672-9F0C-45B5E3800860}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BC084EAD-77C7-4D54-8D05-374B06F43DD0} = {B03707BC-953E-4672-9F0C-45B5E3800860}
+		{87951442-943C-49A9-9CDB-D28A0E056DF5} = {B03707BC-953E-4672-9F0C-45B5E3800860}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {339B5817-90D1-4C7D-A6A1-F8AD8DD0A3E1}
