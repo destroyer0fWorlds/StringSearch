@@ -30,5 +30,10 @@ namespace StringSearch.Tokens
         {
             Operator = @operator;
         }
+
+        public override string ToString()
+        {
+            return this.Operator.ToString();
+        }
     }
 }

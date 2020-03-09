@@ -142,26 +142,48 @@ namespace StringSearch.Tests
             Assert.Equal("200", ((RangeCriterion)parseResults.ElementAt(0)).EndValue);
         }
 
-        //[Fact]
-        //public void Range_Filter_Should_Parse_Square_Brackets_Successfully()
-        //{
-        //    // Arrange
-        //    // "[" and "]" are used to identify operators
-        //    var filter = "(U]s[e]r[Id[between]1[0]0-[[200]]])";
+        [Fact]
+        public void Range_Filter_Should_Parse_Square_Brackets_Successfully()
+        {
+            // Arrange
+            // "[" and "]" are used to identify operators
+            var filter = "(U]s[e]r[Id[between]1[0]0-[[200]]])";
 
-        //    // Act
-        //    var parseResults = new Parser().Parse(filter);
+            // Act
+            var parseResults = new Parser().Parse(filter);
 
-        //    // Assert
-        //    Assert.NotNull(parseResults);
-        //    Assert.NotEmpty(parseResults);
-        //    Assert.Single(parseResults);
-        //    Assert.Equal(typeof(RangeCriterion), parseResults.ElementAt(0).GetType());
-        //    var criterion = ((RangeCriterion)parseResults.ElementAt(0));
-        //    Assert.Equal("U]s[e]r[Id", criterion.Name);
-        //    Assert.Equal(ConditionOperatorType.Between, criterion.Operator);
-        //    Assert.Equal("1[0]0", criterion.StartValue);
-        //    Assert.Equal("[[200]]]", criterion.EndValue);
-        //}
+            // Assert
+            Assert.NotNull(parseResults);
+            Assert.NotEmpty(parseResults);
+            Assert.Single(parseResults);
+            Assert.Equal(typeof(RangeCriterion), parseResults.ElementAt(0).GetType());
+            var criterion = ((RangeCriterion)parseResults.ElementAt(0));
+            Assert.Equal("U]s[e]r[Id", criterion.Name);
+            Assert.Equal(ConditionOperatorType.Between, criterion.Operator);
+            Assert.Equal("1[0]0", criterion.StartValue);
+            Assert.Equal("[[200]]]", criterion.EndValue);
+        }
+
+        [Fact]
+        public void Range_Filter_Should_Parse_Parentheses_Successfully()
+        {
+            // Arrange
+            // "(" and ")" are used to identify groups
+            var filter = "(U)s(e)r(Id[between]1(0)0-((200))))";
+
+            // Act
+            var parseResults = new Parser().Parse(filter);
+
+            // Assert
+            Assert.NotNull(parseResults);
+            Assert.NotEmpty(parseResults);
+            Assert.Single(parseResults);
+            Assert.Equal(typeof(RangeCriterion), parseResults.ElementAt(0).GetType());
+            var criterion = ((RangeCriterion)parseResults.ElementAt(0));
+            Assert.Equal("U)s(e)r(Id", criterion.Name);
+            Assert.Equal(ConditionOperatorType.Between, criterion.Operator);
+            Assert.Equal("1(0)0", criterion.StartValue);
+            Assert.Equal("((200)))", criterion.EndValue);
+        }
     }
 }

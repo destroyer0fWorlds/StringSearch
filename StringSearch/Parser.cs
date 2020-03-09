@@ -39,7 +39,7 @@ namespace StringSearch
         /// <returns></returns>
         public IEnumerable<ICriterion> Parse(string filter)
         {
-            var groups = new Grouper(_operators).Group(filter);
+            var groups = new GroupParser(_operators).Parse(filter);
             return this.Parse(groups);
         }
 
@@ -54,7 +54,7 @@ namespace StringSearch
             if (operatorOverrides == null) { throw new ArgumentNullException(nameof(operatorOverrides), "Operator overrides cannot be null"); }
 
             var operators = this.InitOperators(operatorOverrides);
-            var groups = new Grouper(operators).Group(filter);
+            var groups = new GroupParser(operators).Parse(filter);
             return this.Parse(groups);
         }
 

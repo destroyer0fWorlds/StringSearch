@@ -141,25 +141,46 @@ namespace StringSearch.Tests
             Assert.Equal("@gmail.com", ((Criterion)parseResults.ElementAt(0)).Value);
         }
 
-        //[Fact]
-        //public void Single_Filter_Should_Parse_Square_Brackets_Successfully()
-        //{
-        //    // Arrange
-        //    // "[" and "]" are used to identify operators
-        //    var filter = "(Em][][ail[like][@][gmail].][[com]]]])";
+        [Fact]
+        public void Single_Filter_Should_Parse_Square_Brackets_Successfully()
+        {
+            // Arrange
+            // "[" and "]" are used to identify operators
+            var filter = "(Em][][ail[like][@][gmail].][[com]]]])";
 
-        //    // Act
-        //    var parseResults = new Parser().Parse(filter);
+            // Act
+            var parseResults = new Parser().Parse(filter);
 
-        //    // Assert
-        //    Assert.NotNull(parseResults);
-        //    Assert.NotEmpty(parseResults);
-        //    Assert.Single(parseResults);
-        //    Assert.Equal(typeof(Criterion), parseResults.ElementAt(0).GetType());
-        //    var criterion = ((Criterion)parseResults.ElementAt(0));
-        //    Assert.Equal("Em][][ail", criterion.Name);
-        //    Assert.Equal(ConditionOperatorType.Like, criterion.Operator);
-        //    Assert.Equal("[@][gmail].][[com]]]]", criterion.Value);
-        //}
+            // Assert
+            Assert.NotNull(parseResults);
+            Assert.NotEmpty(parseResults);
+            Assert.Single(parseResults);
+            Assert.Equal(typeof(Criterion), parseResults.ElementAt(0).GetType());
+            var criterion = ((Criterion)parseResults.ElementAt(0));
+            Assert.Equal("Em][][ail", criterion.Name);
+            Assert.Equal(ConditionOperatorType.Like, criterion.Operator);
+            Assert.Equal("[@][gmail].][[com]]]]", criterion.Value);
+        }
+
+        [Fact]
+        public void Single_Filter_Should_Parse_Parentheses_Successfully()
+        {
+            // Arrange
+            // "(" and ")" are used to identify groups
+            var filter = "(Em)()(ail[like](@)(gmail).)((com)))))";
+
+            // Act
+            var parseResults = new Parser().Parse(filter);
+
+            // Assert
+            Assert.NotNull(parseResults);
+            Assert.NotEmpty(parseResults);
+            Assert.Single(parseResults);
+            Assert.Equal(typeof(Criterion), parseResults.ElementAt(0).GetType());
+            var criterion = ((Criterion)parseResults.ElementAt(0));
+            Assert.Equal("Em)()(ail", criterion.Name);
+            Assert.Equal(ConditionOperatorType.Like, criterion.Operator);
+            Assert.Equal("(@)(gmail).)((com))))", criterion.Value);
+        }
     }
 }

@@ -195,53 +195,6 @@
         <member name="P:StringSearch.Groups.Group.Tokens">
             <inheritdoc />
         </member>
-        <member name="T:StringSearch.Groups.Grouper">
-            <summary>
-            Parses a string into logical groups
-            </summary>
-        </member>
-        <member name="M:StringSearch.Groups.Grouper.#ctor(System.Collections.Generic.HashSet{StringSearch.IOperator})">
-            <summary>
-            Initializes a new instance of the <see cref="T:StringSearch.Groups.Grouper"/> class
-            </summary>
-            <param name="operators"></param>
-        </member>
-        <member name="M:StringSearch.Groups.Grouper.Group(System.String)">
-            <summary>
-            Parses the supplied string into a hierarchy of conditions and operators
-            </summary>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:StringSearch.Groups.Grouper.IdentifyGroups(System.String,System.Collections.Generic.IEnumerable{StringSearch.Groups.CharacterSet})">
-            <summary>
-            Recursively identify groups
-            </summary>
-            <param name="value"></param>
-            <param name="characterSets"></param>
-            <returns></returns>
-        </member>
-        <member name="M:StringSearch.Groups.Grouper.ValidateInput(System.String)">
-            <summary>
-            Validate the string input is at least vaguely formatted correctly
-            </summary>
-            <param name="value"></param>
-        </member>
-        <member name="M:StringSearch.Groups.Grouper.IsNestedGroup(StringSearch.Groups.IGroup,System.Collections.Generic.IEnumerable{StringSearch.Groups.CharacterSet})">
-            <summary>
-            Determines whether the group is nested
-            </summary>
-            <param name="group"></param>
-            <param name="characterSets"></param>
-            <returns></returns>
-        </member>
-        <member name="M:StringSearch.Groups.Grouper.IdentifyTokens(StringSearch.Groups.IGroup)">
-            <summary>
-            Converts a group's value into recognizable tokens
-            </summary>
-            <param name="group"></param>
-            <returns></returns>
-        </member>
         <member name="T:StringSearch.Groups.GroupIdentifier">
             <summary>
             Utility for identifying group type
@@ -270,6 +223,53 @@
             <summary>
             Indicates whether this is a single value condition
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.Groups.GroupParser">
+            <summary>
+            Parses a string into logical groups
+            </summary>
+        </member>
+        <member name="M:StringSearch.Groups.GroupParser.#ctor(System.Collections.Generic.HashSet{StringSearch.IOperator})">
+            <summary>
+            Initializes a new instance of the <see cref="T:StringSearch.Groups.GroupParser"/> class
+            </summary>
+            <param name="operators"></param>
+        </member>
+        <member name="M:StringSearch.Groups.GroupParser.Parse(System.String)">
+            <summary>
+            Parses the supplied string into a hierarchy of conditions and operators
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Groups.GroupParser.RecursiveParse(System.String)">
+            <summary>
+            Recursively parse a string value into groups
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Groups.GroupParser.IdentifyGroups(System.String)">
+            <summary>
+            Process a string, attempting to break it into more recognizable components
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Groups.GroupParser.Split(System.String[],System.String)">
+            <summary>
+            Further slit a collection of strings into multiple sub strings using the supplied value
+            </summary>
+            <param name="values"></param>
+            <param name="splitValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Groups.GroupParser.ParseTokens(StringSearch.Groups.IGroup)">
+            <summary>
+            Converts a group's value into recognizable tokens
+            </summary>
+            <param name="group"></param>
             <returns></returns>
         </member>
         <member name="T:StringSearch.Groups.IGroup">
