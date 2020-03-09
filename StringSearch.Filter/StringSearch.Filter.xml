@@ -171,7 +171,7 @@
             <param name="operatorOverrides"></param>
             <returns></returns>
         </member>
-        <member name="M:StringSearch.Filter.FilterParser.ParseAs``1(System.String,StringSearch.Filter.IConverter{``0})">
+        <member name="M:StringSearch.Filter.FilterParser.ParseAs``1(System.String,StringSearch.Filter.IFilterConverter{``0})">
             <summary>
             Parse a filter string to a custom type
             </summary>
@@ -180,7 +180,7 @@
             <param name="converter"></param>
             <returns></returns>
         </member>
-        <member name="M:StringSearch.Filter.FilterParser.ParseAs``1(System.String,StringSearch.Filter.IConverter{``0},System.Collections.Generic.Dictionary{StringSearch.Filter.OperatorType,System.String})">
+        <member name="M:StringSearch.Filter.FilterParser.ParseAs``1(System.String,StringSearch.Filter.IFilterConverter{``0},System.Collections.Generic.Dictionary{StringSearch.Filter.OperatorType,System.String})">
             <summary>
             Parse a filter string to a custom type
             </summary>
@@ -347,19 +347,6 @@
         <member name="P:StringSearch.Filter.Groups.LogicGroup.HasNestedGroups">
             <inheritdoc />
         </member>
-        <member name="T:StringSearch.Filter.IConverter`1">
-            <summary>
-            Custom converter
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:StringSearch.Filter.IConverter`1.ConvertTo(System.Collections.Generic.IEnumerable{StringSearch.Filter.ICriterion})">
-            <summary>
-            Convert the supplied criteria to a custom type
-            </summary>
-            <param name="criteria"></param>
-            <returns></returns>
-        </member>
         <member name="T:StringSearch.Filter.ICriterion">
             <summary>
             Represents a criterion
@@ -390,6 +377,19 @@
             Parse a collection of tokens as a criterion
             </summary>
             <param name="tokens"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.Filter.IFilterConverter`1">
+            <summary>
+            Custom converter
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:StringSearch.Filter.IFilterConverter`1.ConvertTo(System.Collections.Generic.IEnumerable{StringSearch.Filter.ICriterion})">
+            <summary>
+            Convert the supplied criteria to a custom type
+            </summary>
+            <param name="criteria"></param>
             <returns></returns>
         </member>
         <member name="T:StringSearch.Filter.IOperator">

@@ -4,13 +4,13 @@
         <name>StringSearch.OrderBy</name>
     </assembly>
     <members>
-        <member name="T:StringSearch.OrderBy.IConverter`1">
+        <member name="T:StringSearch.OrderBy.IOrderByConverter`1">
             <summary>
             Custom converter
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:StringSearch.OrderBy.IConverter`1.ConvertTo(System.Collections.Generic.IEnumerable{StringSearch.OrderBy.IOrderedCriterion})">
+        <member name="M:StringSearch.OrderBy.IOrderByConverter`1.ConvertTo(System.Collections.Generic.IEnumerable{StringSearch.OrderBy.IOrderedCriterion})">
             <summary>
             Convert the supplied criteria to a custom type
             </summary>
@@ -78,7 +78,7 @@
             <param name="orderByOverrides"></param>
             <returns></returns>
         </member>
-        <member name="M:StringSearch.OrderBy.OrderByParser.ParseAs``1(System.String,StringSearch.OrderBy.IConverter{``0})">
+        <member name="M:StringSearch.OrderBy.OrderByParser.ParseAs``1(System.String,StringSearch.OrderBy.IOrderByConverter{``0})">
             <summary>
             Parse an order by string to a custom type
             </summary>
@@ -87,7 +87,7 @@
             <param name="converter"></param>
             <returns></returns>
         </member>
-        <member name="M:StringSearch.OrderBy.OrderByParser.ParseAs``1(System.String,StringSearch.OrderBy.IConverter{``0},System.Collections.Generic.Dictionary{StringSearch.OrderBy.OrderByDirection,System.String})">
+        <member name="M:StringSearch.OrderBy.OrderByParser.ParseAs``1(System.String,StringSearch.OrderBy.IOrderByConverter{``0},System.Collections.Generic.Dictionary{StringSearch.OrderBy.OrderByDirection,System.String})">
             <summary>
             Parse an order by string to a custom type
             </summary>

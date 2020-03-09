@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.3.0</Version>
+    <Version>2.0.0</Version>
     <Authors>Joel</Authors>
     <Company>Excelsior Industries</Company>
     <Description>Utility for converting search API order by strings into a hierarchy of objects</Description>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/destroyer0fWorlds/StringSearch</PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
