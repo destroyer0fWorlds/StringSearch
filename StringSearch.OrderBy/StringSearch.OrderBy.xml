@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StringSearch.OrderBy</name>
+    </assembly>
+    <members>
+        <member name="T:StringSearch.OrderBy.IConverter`1">
+            <summary>
+            Custom converter
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:StringSearch.OrderBy.IConverter`1.ConvertTo(System.Collections.Generic.IEnumerable{StringSearch.OrderBy.IOrderedCriterion})">
+            <summary>
+            Convert the supplied criteria to a custom type
+            </summary>
+            <param name="orderedCriteria"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.OrderBy.IOrderedCriterion">
+            <summary>
+            Represents an ordered criterion
+            </summary>
+        </member>
+        <member name="P:StringSearch.OrderBy.IOrderedCriterion.Name">
+            <summary>
+            Property name
+            </summary>
+        </member>
+        <member name="P:StringSearch.OrderBy.IOrderedCriterion.Direction">
+            <summary>
+            Order direction
+            </summary>
+        </member>
+        <member name="T:StringSearch.OrderBy.OrderByDirection">
+            <summary>
+            Order by direction
+            </summary>
+        </member>
+        <member name="F:StringSearch.OrderBy.OrderByDirection.Ascending">
+            <summary>
+            Ascending
+            </summary>
+        </member>
+        <member name="F:StringSearch.OrderBy.OrderByDirection.Descending">
+            <summary>
+            Descending
+            </summary>
+        </member>
+        <member name="T:StringSearch.OrderBy.OrderByParser">
+            <summary>
+            Utility for parsing an order by string to a hierarchical structure of objects
+            </summary>
+        </member>
+        <member name="M:StringSearch.OrderBy.OrderByParser.#ctor">
+            <summary>
+            Initialize an instance of a <see cref="T:StringSearch.OrderBy.OrderByParser"/> class
+            </summary>
+        </member>
+        <member name="M:StringSearch.OrderBy.OrderByParser.#ctor(System.Collections.Generic.Dictionary{StringSearch.OrderBy.OrderByDirection,System.String})">
+            <summary>
+            Initialize an instance of a <see cref="T:StringSearch.OrderBy.OrderByParser"/> class specifying override values
+            </summary>
+            <param name="orderByOverrides"></param>
+        </member>
+        <member name="M:StringSearch.OrderBy.OrderByParser.Parse(System.String)">
+            <summary>
+            Parse an order by string
+            </summary>
+            <param name="orderBy"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.OrderBy.OrderByParser.Parse(System.String,System.Collections.Generic.Dictionary{StringSearch.OrderBy.OrderByDirection,System.String})">
+            <summary>
+            Parse an order by string
+            </summary>
+            <param name="orderBy"></param>
+            <param name="orderByOverrides"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.OrderBy.OrderByParser.ParseAs``1(System.String,StringSearch.OrderBy.IConverter{``0})">
+            <summary>
+            Parse an order by string to a custom type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="orderBy"></param>
+            <param name="converter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.OrderBy.OrderByParser.ParseAs``1(System.String,StringSearch.OrderBy.IConverter{``0},System.Collections.Generic.Dictionary{StringSearch.OrderBy.OrderByDirection,System.String})">
+            <summary>
+            Parse an order by string to a custom type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="orderBy"></param>
+            <param name="converter"></param>
+            <param name="orderByOverrides"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.OrderBy.OrderByParser.InitDirections(System.Collections.Generic.Dictionary{StringSearch.OrderBy.OrderByDirection,System.String})">
+            <summary>
+            Initialize the list of directions by combining all available into a single collection
+            </summary>
+            <param name="orderByOverrides"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.OrderBy.OrderByParser.ParseOrderByString(System.String,System.Collections.Generic.Dictionary{StringSearch.OrderBy.OrderByDirection,System.String})">
+            <summary>
+            Parse the order by string into a collection of <see cref="T:StringSearch.OrderBy.IOrderedCriterion"/>
+            </summary>
+            <param name="orderBy"></param>
+            <param name="orderByDirections"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StringSearch.OrderBy.OrderedCriterion">
+            <summary>
+            Ordered criterion
+            </summary>
+        </member>
+        <member name="P:StringSearch.OrderBy.OrderedCriterion.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:StringSearch.OrderBy.OrderedCriterion.Direction">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

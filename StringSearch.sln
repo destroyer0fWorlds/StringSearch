@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1022
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringSearch", "StringSearch\StringSearch.csproj", "{ED33B983-58CA-446D-83A2-6D124BF5298C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringSearch.Filter", "StringSearch.Filter\StringSearch.Filter.csproj", "{ED33B983-58CA-446D-83A2-6D124BF5298C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringSearch.Tests", "StringSearch.Tests\StringSearch.Tests.csproj", "{BC084EAD-77C7-4D54-8D05-374B06F43DD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringSearch.Filter.Tests", "StringSearch.Filter.Tests\StringSearch.Filter.Tests.csproj", "{BC084EAD-77C7-4D54-8D05-374B06F43DD0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringSearch.Converters.TypeSearchLib", "StringSearch.Converters.TypeSearchLib\StringSearch.Converters.TypeSearchLib.csproj", "{7D551991-EB92-4931-8D26-1D0410EFA8E5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringSearch.Converters.TypeSearchLib.Tests", "StringSearch.Converters.TypeSearchLib.Tests\StringSearch.Converters.TypeSearchLib.Tests.csproj", "{87951442-943C-49A9-9CDB-D28A0E056DF5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B03707BC-953E-4672-9F0C-45B5E3800860}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringSearch.OrderBy", "StringSearch.OrderBy\StringSearch.OrderBy.csproj", "{65F1DF0E-1561-45EC-B6D2-3DCB80D9023D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringSearch.OrderBy.Tests", "StringSearch.OrderBy.Tests\StringSearch.OrderBy.Tests.csproj", "{AA1ABF61-CC49-4C3C-B242-916266D27E4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,14 @@ Global
 		{87951442-943C-49A9-9CDB-D28A0E056DF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87951442-943C-49A9-9CDB-D28A0E056DF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87951442-943C-49A9-9CDB-D28A0E056DF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65F1DF0E-1561-45EC-B6D2-3DCB80D9023D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65F1DF0E-1561-45EC-B6D2-3DCB80D9023D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65F1DF0E-1561-45EC-B6D2-3DCB80D9023D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65F1DF0E-1561-45EC-B6D2-3DCB80D9023D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA1ABF61-CC49-4C3C-B242-916266D27E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA1ABF61-CC49-4C3C-B242-916266D27E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA1ABF61-CC49-4C3C-B242-916266D27E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA1ABF61-CC49-4C3C-B242-916266D27E4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +54,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BC084EAD-77C7-4D54-8D05-374B06F43DD0} = {B03707BC-953E-4672-9F0C-45B5E3800860}
 		{87951442-943C-49A9-9CDB-D28A0E056DF5} = {B03707BC-953E-4672-9F0C-45B5E3800860}
+		{AA1ABF61-CC49-4C3C-B242-916266D27E4F} = {B03707BC-953E-4672-9F0C-45B5E3800860}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {339B5817-90D1-4C7D-A6A1-F8AD8DD0A3E1}

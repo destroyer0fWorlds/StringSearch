@@ -1,6 +1,8 @@
 using System.Linq;
 using TypeSearch;
 using TypeSearch.Criteria;
+using StringSearch.Filter;
+using StringSearch.OrderBy;
 using Xunit;
 
 namespace StringSearch.Converters.TypeSearchLib.Tests
@@ -14,8 +16,8 @@ namespace StringSearch.Converters.TypeSearchLib.Tests
             var filter = "(Email[like]@gmail.com)";
 
             // Act
-            var stringResults = new Parser().Parse(filter);
-            var typeResults = new Parser().ParseAs(filter, new TypeSearchConverter<object>());
+            var stringResults = new FilterParser().Parse(filter);
+            var typeResults = new FilterParser().ParseAs(filter, new TypeSearchConverter<object>());
 
             // Assert
             Assert.NotNull(stringResults);
@@ -46,8 +48,8 @@ namespace StringSearch.Converters.TypeSearchLib.Tests
             var filter = "(Age[between]20-30)";
 
             // Act
-            var stringResults = new Parser().Parse(filter);
-            var typeResults = new Parser().ParseAs(filter, new TypeSearchConverter<object>());
+            var stringResults = new FilterParser().Parse(filter);
+            var typeResults = new FilterParser().ParseAs(filter, new TypeSearchConverter<object>());
 
             // Assert
             Assert.NotNull(stringResults);
@@ -56,8 +58,8 @@ namespace StringSearch.Converters.TypeSearchLib.Tests
             Assert.NotEmpty(stringResults);
             Assert.NotEmpty(typeResults.Criteria);
 
-            Assert.Equal(typeof(RangeCriterion), stringResults.ElementAt(0).GetType());
-            var stringCriterion = (RangeCriterion)stringResults.ElementAt(0);
+            Assert.Equal(typeof(StringSearch.Filter.RangeCriterion), stringResults.ElementAt(0).GetType());
+            var stringCriterion = (StringSearch.Filter.RangeCriterion)stringResults.ElementAt(0);
             Assert.Equal("Age", stringCriterion.Name);
             Assert.Equal(ConditionOperatorType.Between, stringCriterion.Operator);
             Assert.Equal("20", stringCriterion.StartValue);
@@ -80,8 +82,8 @@ namespace StringSearch.Converters.TypeSearchLib.Tests
             var filter = "(LastName[eq]Doe)[and]((FirstName[eq]John)[or](FirstName[eq]Jane))";
 
             // Act
-            var stringResults = new Parser().Parse(filter);
-            var typeResults = new Parser().ParseAs(filter, new TypeSearchConverter<object>());
+            var stringResults = new FilterParser().Parse(filter);
+            var typeResults = new FilterParser().ParseAs(filter, new TypeSearchConverter<object>());
 
             // Assert
             Assert.NotNull(stringResults);
@@ -112,8 +114,8 @@ namespace StringSearch.Converters.TypeSearchLib.Tests
             var filter = "(LastName[eq]Doe)[and]((FirstName[eq]John)[or](FirstName[eq]Jane))";
 
             // Act
-            var stringResults = new Parser().Parse(filter);
-            var typeResults = new Parser().ParseAs(filter, new TypeSearchConverter<object>());
+            var stringResults = new FilterParser().Parse(filter);
+            var typeResults = new FilterParser().ParseAs(filter, new TypeSearchConverter<object>());
 
             // Assert
             Assert.NotNull(stringResults);
@@ -163,6 +165,60 @@ namespace StringSearch.Converters.TypeSearchLib.Tests
             Assert.Equal("FirstName", typeSecondCriterion.Name);
             Assert.Equal(SingleOperator.Equals, typeSecondCriterion.Operator);
             Assert.Equal("Jane", typeSecondCriterion.Value);
+        }
+
+        [Fact]
+        public void Single_Order_By_Should_Convert_Successfully()
+        {
+            // Arrange
+            var orderBy = "FirstName[asc]";
+
+            // Act
+            var stringResults = new OrderByParser().Parse(orderBy);
+            var typeResults = new OrderByParser().ParseAs(orderBy, new TypeSearchConverter<object>());
+
+            // Assert
+            Assert.NotNull(stringResults);
+            Assert.NotNull(typeResults);
+
+            Assert.NotEmpty(stringResults);
+            Assert.NotEmpty(typeResults.Criteria);
+
+            Assert.Single(stringResults);
+            Assert.Equal("FirstName", stringResults.ElementAt(0).Name);
+            Assert.Equal(OrderByDirection.Ascending, stringResults.ElementAt(0).Direction);
+
+            Assert.Single(typeResults.Criteria);
+            Assert.Equal("FirstName", typeResults.Criteria.ElementAt(0).Name);
+            Assert.Equal(SortDirection.Ascending, typeResults.Criteria.ElementAt(0).SortDirection);
+        }
+
+        [Fact]
+        public void Multiple_Order_By_Should_Convert_Successfully()
+        {
+            // Arrange
+            var orderBy = "FirstName[asc],LastName[desc]";
+
+            // Act
+            var stringResults = new OrderByParser().Parse(orderBy);
+            var typeResults = new OrderByParser().ParseAs(orderBy, new TypeSearchConverter<object>());
+
+            // Assert
+            Assert.NotNull(stringResults);
+            Assert.NotNull(typeResults);
+
+            Assert.NotEmpty(stringResults);
+            Assert.NotEmpty(typeResults.Criteria);
+
+            Assert.Equal("FirstName", stringResults.ElementAt(0).Name);
+            Assert.Equal(OrderByDirection.Ascending, stringResults.ElementAt(0).Direction);
+            Assert.Equal("LastName", stringResults.ElementAt(1).Name);
+            Assert.Equal(OrderByDirection.Descending, stringResults.ElementAt(1).Direction);
+
+            Assert.Equal("FirstName", typeResults.Criteria.ElementAt(0).Name);
+            Assert.Equal(SortDirection.Ascending, typeResults.Criteria.ElementAt(0).SortDirection);
+            Assert.Equal("LastName", typeResults.Criteria.ElementAt(1).Name);
+            Assert.Equal(SortDirection.Descending, typeResults.Criteria.ElementAt(1).SortDirection);
         }
     }
 }

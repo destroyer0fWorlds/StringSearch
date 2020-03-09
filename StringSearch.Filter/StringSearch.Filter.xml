@@ -140,6 +140,70 @@
         <member name="M:StringSearch.Filter.CriterionParser.Parse(System.Collections.Generic.IEnumerable{StringSearch.Filter.Tokens.IToken})">
             <inheritdoc />
         </member>
+        <member name="T:StringSearch.Filter.FilterParser">
+            <summary>
+            Utility for parsing a filter string to a hierarchical structure of objects
+            </summary>
+        </member>
+        <member name="M:StringSearch.Filter.FilterParser.#ctor">
+            <summary>
+            Initialize an instance of a <see cref="T:StringSearch.Filter.FilterParser"/> class
+            </summary>
+        </member>
+        <member name="M:StringSearch.Filter.FilterParser.#ctor(System.Collections.Generic.Dictionary{StringSearch.Filter.OperatorType,System.String})">
+            <summary>
+            Initialize an instance of a <see cref="T:StringSearch.Filter.FilterParser"/> class specifying override values
+            </summary>
+            <param name="operatorOverrides"></param>
+        </member>
+        <member name="M:StringSearch.Filter.FilterParser.Parse(System.String)">
+            <summary>
+            Parse a filter string
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Filter.FilterParser.Parse(System.String,System.Collections.Generic.Dictionary{StringSearch.Filter.OperatorType,System.String})">
+            <summary>
+            Parse a filter string
+            </summary>
+            <param name="filter"></param>
+            <param name="operatorOverrides"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Filter.FilterParser.ParseAs``1(System.String,StringSearch.Filter.IConverter{``0})">
+            <summary>
+            Parse a filter string to a custom type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="filter"></param>
+            <param name="converter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Filter.FilterParser.ParseAs``1(System.String,StringSearch.Filter.IConverter{``0},System.Collections.Generic.Dictionary{StringSearch.Filter.OperatorType,System.String})">
+            <summary>
+            Parse a filter string to a custom type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="filter"></param>
+            <param name="converter"></param>
+            <param name="operatorOverrides"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Filter.FilterParser.ConvertGroupsToCriteria(System.Collections.Generic.IEnumerable{StringSearch.Filter.Groups.IGroup})">
+            <summary>
+            Recursively convert groups into criteria
+            </summary>
+            <param name="groups"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Filter.FilterParser.InitOperators(System.Collections.Generic.Dictionary{StringSearch.Filter.OperatorType,System.String})">
+            <summary>
+            Initialize the list of operators by combining all available into a single collection
+            </summary>
+            <param name="operatorOverrides"></param>
+            <returns></returns>
+        </member>
         <member name="T:StringSearch.Filter.Groups.CriterionGroup">
             <summary>
             Criterion group
@@ -508,70 +572,6 @@
             <summary>
             Or
             </summary>
-        </member>
-        <member name="T:StringSearch.Filter.Parser">
-            <summary>
-            Utility for parsing a filter string to a hierarchical structure of objects
-            </summary>
-        </member>
-        <member name="M:StringSearch.Filter.Parser.#ctor">
-            <summary>
-            Initialize an instance of a <see cref="T:StringSearch.Filter.Parser"/> class
-            </summary>
-        </member>
-        <member name="M:StringSearch.Filter.Parser.#ctor(System.Collections.Generic.Dictionary{StringSearch.Filter.OperatorType,System.String})">
-            <summary>
-            Initialize an instance of a <see cref="T:StringSearch.Filter.Parser"/> class specifying override values
-            </summary>
-            <param name="operatorOverrides"></param>
-        </member>
-        <member name="M:StringSearch.Filter.Parser.Parse(System.String)">
-            <summary>
-            Parse a filter string
-            </summary>
-            <param name="filter"></param>
-            <returns></returns>
-        </member>
-        <member name="M:StringSearch.Filter.Parser.Parse(System.String,System.Collections.Generic.Dictionary{StringSearch.Filter.OperatorType,System.String})">
-            <summary>
-            Parse a filter string
-            </summary>
-            <param name="filter"></param>
-            <param name="operatorOverrides"></param>
-            <returns></returns>
-        </member>
-        <member name="M:StringSearch.Filter.Parser.ParseAs``1(System.String,StringSearch.Filter.IConverter{``0})">
-            <summary>
-            Parse a filter string to a custom type
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="filter"></param>
-            <param name="converter"></param>
-            <returns></returns>
-        </member>
-        <member name="M:StringSearch.Filter.Parser.ParseAs``1(System.String,StringSearch.Filter.IConverter{``0},System.Collections.Generic.Dictionary{StringSearch.Filter.OperatorType,System.String})">
-            <summary>
-            Parse a filter string to a custom type
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="filter"></param>
-            <param name="converter"></param>
-            <param name="operatorOverrides"></param>
-            <returns></returns>
-        </member>
-        <member name="M:StringSearch.Filter.Parser.Parse(System.Collections.Generic.IEnumerable{StringSearch.Filter.Groups.IGroup})">
-            <summary>
-            Recursively parse a collection of groups into criteria
-            </summary>
-            <param name="groups"></param>
-            <returns></returns>
-        </member>
-        <member name="M:StringSearch.Filter.Parser.InitOperators(System.Collections.Generic.Dictionary{StringSearch.Filter.OperatorType,System.String})">
-            <summary>
-            Initialize the list of operators by combining all available into a single collection
-            </summary>
-            <param name="operatorOverrides"></param>
-            <returns></returns>
         </member>
         <member name="T:StringSearch.Filter.RangeCriterion">
             <summary>

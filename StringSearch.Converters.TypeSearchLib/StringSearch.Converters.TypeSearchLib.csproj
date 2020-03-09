@@ -22,7 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StringSearch\StringSearch.csproj" />
+    <ProjectReference Include="..\StringSearch.Filter\StringSearch.Filter.csproj" />
+    <ProjectReference Include="..\StringSearch.OrderBy\StringSearch.OrderBy.csproj" />
   </ItemGroup>
 
 </Project>

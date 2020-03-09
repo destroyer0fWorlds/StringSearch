@@ -1,14 +1,18 @@
 ﻿using System.Collections.Generic;
 using TypeSearch;
 using TypeSearch.Criteria;
+using StringSearch.Filter;
+using StringSearch.OrderBy;
 
 namespace StringSearch.Converters.TypeSearchLib
 {
     /// <summary>
-    /// Convert the results of <see cref="StringSearch"/> (<see cref="ICriterion"/>) to <see cref="TypeSearch"/>.<see cref="TypeSearch.WhereCriteria{T}"/>
+    /// Convert <see cref="StringSearch"/> filter and order by results to 
+    /// <see cref="TypeSearch"/>.<see cref="TypeSearch.WhereCriteria{T}"/> and 
+    /// <see cref="TypeSearch"/>.<see cref="TypeSearch.SortCriteria{T}"/> respectively
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class TypeSearchConverter<T> : IConverter<WhereCriteria<T>>
+    public class TypeSearchConverter<T> : IFilterConverter<WhereCriteria<T>>, IOrderByConverter<SortCriteria<T>>
         where T : class
     {
         /// <summary>
@@ -47,7 +51,7 @@ namespace StringSearch.Converters.TypeSearchLib
                         Operator = this.ConvertConditionTypeToSingleType(singleCriterion.Operator)
                     };
                 }
-                else if (criterion is RangeCriterion rangeCriterion)
+                else if (criterion is StringSearch.Filter.RangeCriterion rangeCriterion)
                 {
                     criteriaContainer.RangeCriterion = new TypeSearch.Criteria.RangeCriterion()
                     {
@@ -144,6 +148,32 @@ namespace StringSearch.Converters.TypeSearchLib
                     break;
             }
             return op;
+        }
+
+        /// <summary>
+        /// Convert the results of <see cref="StringSearch"/> (<see cref="IOrderedCriterion"/>) to <see cref="TypeSearch"/>.<see cref="TypeSearch.SortCriteria{T}"/>
+        /// </summary>
+        /// <param name="orderedCriteria"></param>
+        /// <returns></returns>
+        public SortCriteria<T> ConvertTo(IEnumerable<IOrderedCriterion> orderedCriteria)
+        {
+            var sortCriteria = new SortCriteria<T>();
+            foreach (var orderedCriterion in orderedCriteria)
+            {
+                var sortCriterion = new SortCriterion() { Name = orderedCriterion.Name };
+                if (orderedCriterion.Direction == OrderByDirection.Ascending)
+                {
+                    // Ascending
+                    sortCriterion.SortDirection = SortDirection.Ascending;
+                }
+                else
+                {
+                    // Descending
+                    sortCriterion.SortDirection = SortDirection.Descending;
+                }
+                sortCriteria.Criteria.Add(sortCriterion);
+            }
+            return sortCriteria;
         }
     }
 }
