@@ -8,6 +8,7 @@
     <Description>Utility for converting search API filter strings into a hierarchy of condition objects</Description>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/destroyer0fWorlds/StringSearch</PackageProjectUrl>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
