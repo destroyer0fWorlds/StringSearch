@@ -19,16 +19,16 @@ namespace StringSearch.Converters.TypeSearchLib
         public WhereCriteria<T> ConvertTo(IEnumerable<ICriterion> criteria)
         {
             var typeSearchCriteria = new WhereCriteria<T>();
-            typeSearchCriteria.Criteria.AddRange(this.ConvertToSearchDefintionRecursively(criteria));
+            typeSearchCriteria.Criteria.AddRange(this.RecursiveConvertTo(criteria));
             return typeSearchCriteria;
         }
 
         /// <summary>
-        /// Recursively convert to a collection of TypeSearch criteria
+        /// Recursively convert to a collection of <see cref="TypeSearch"/> criteria
         /// </summary>
         /// <param name="criteria"></param>
         /// <returns></returns>
-        private List<CriteriaContainer<T>> ConvertToSearchDefintionRecursively(IEnumerable<ICriterion> criteria)
+        private List<CriteriaContainer<T>> RecursiveConvertTo(IEnumerable<ICriterion> criteria)
         {
             var typeSearchCriteria = new List<CriteriaContainer<T>>();
             foreach (var criterion in criteria)
@@ -61,7 +61,7 @@ namespace StringSearch.Converters.TypeSearchLib
                 {
                     var nestedCriteria = (NestedCriterion)criterion;
                     criteriaContainer.CriteriaCollection = new WhereCriteria<T>();
-                    criteriaContainer.CriteriaCollection.Criteria.AddRange(this.ConvertToSearchDefintionRecursively(nestedCriteria.Criteria));
+                    criteriaContainer.CriteriaCollection.Criteria.AddRange(this.RecursiveConvertTo(nestedCriteria.Criteria));
                 }
 
                 typeSearchCriteria.Add(criteriaContainer);

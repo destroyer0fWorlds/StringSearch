@@ -11,11 +11,15 @@
             <typeparam name="T"></typeparam>
         </member>
         <member name="M:StringSearch.Converters.TypeSearchLib.TypeSearchConverter`1.ConvertTo(System.Collections.Generic.IEnumerable{StringSearch.ICriterion})">
-            <inheritdoc />
-        </member>
-        <member name="M:StringSearch.Converters.TypeSearchLib.TypeSearchConverter`1.ConvertToSearchDefintionRecursively(System.Collections.Generic.IEnumerable{StringSearch.ICriterion})">
             <summary>
-            Recursively convert to a collection of TypeSearch criteria
+            Convert the results of <see cref="N:StringSearch"/> (<see cref="T:StringSearch.ICriterion"/>) to <see cref="N:TypeSearch"/>.<see cref="T:TypeSearch.WhereCriteria`1"/>
+            </summary>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringSearch.Converters.TypeSearchLib.TypeSearchConverter`1.RecursiveConvertTo(System.Collections.Generic.IEnumerable{StringSearch.ICriterion})">
+            <summary>
+            Recursively convert to a collection of <see cref="N:TypeSearch"/> criteria
             </summary>
             <param name="criteria"></param>
             <returns></returns>
