@@ -108,6 +108,23 @@ namespace StringSearch.Tests
         }
 
         [Fact]
+        public void Range_Filter_Should_Parse_Custom_Logic_Operator_Successfully()
+        {
+            // Arrange
+            var filter = "(UserId[between]100-200)[else](UserId[between]300-400)";
+            var operatorOverrides = new Dictionary<OperatorType, string>() { { OperatorType.Or, "else" } };
+
+            // Act
+            var parseResults = new Parser(operatorOverrides).Parse(filter);
+
+            // Assert
+            Assert.NotNull(parseResults);
+            Assert.NotEmpty(parseResults);
+            Assert.Equal(typeof(RangeCriterion), parseResults.ElementAt(1).GetType());
+            Assert.Equal(LogicOperatorType.Or, ((RangeCriterion)parseResults.ElementAt(1)).LogicOperator);
+        }
+
+        [Fact]
         public void Range_Filter_Should_Parse_Values_Successfully()
         {
             // Arrange

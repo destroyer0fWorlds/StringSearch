@@ -66,12 +66,14 @@ namespace StringSearch.Tests
 
             Assert.Equal(typeof(Criterion), nestedCriterion.Criteria.ElementAt(0).GetType());
             var firstCriterion = (Criterion)nestedCriterion.Criteria.ElementAt(0);
+            Assert.Equal(LogicOperatorType.And, firstCriterion.LogicOperator);
             Assert.Equal("FirstName", firstCriterion.Name);
             Assert.Equal(ConditionOperatorType.Equals, firstCriterion.Operator);
             Assert.Equal("John", firstCriterion.Value);
 
             Assert.Equal(typeof(Criterion), nestedCriterion.Criteria.ElementAt(1).GetType());
             var secondCriterion = (Criterion)nestedCriterion.Criteria.ElementAt(1);
+            Assert.Equal(LogicOperatorType.Or, secondCriterion.LogicOperator);
             Assert.Equal("FirstName", secondCriterion.Name);
             Assert.Equal(ConditionOperatorType.Equals, secondCriterion.Operator);
             Assert.Equal("Jane", secondCriterion.Value);

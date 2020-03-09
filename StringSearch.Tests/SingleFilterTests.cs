@@ -108,6 +108,23 @@ namespace StringSearch.Tests
         }
 
         [Fact]
+        public void Single_Filter_Should_Parse_Custom_Logic_Operator_Successfully()
+        {
+            // Arrange
+            var filter = "(FirstName[eq]John)[oreo](FirstName[eq]Jane)";
+            var operatorOverrides = new Dictionary<OperatorType, string>() { { OperatorType.Or, "oreo" } };
+
+            // Act
+            var parseResults = new Parser(operatorOverrides).Parse(filter);
+
+            // Assert
+            Assert.NotNull(parseResults);
+            Assert.NotEmpty(parseResults);
+            Assert.Equal(typeof(Criterion), parseResults.ElementAt(1).GetType());
+            Assert.Equal(LogicOperatorType.Or, ((Criterion)parseResults.ElementAt(1)).LogicOperator);
+        }
+
+        [Fact]
         public void Single_Filter_Should_Parse_Value_Successfully()
         {
             // Arrange
