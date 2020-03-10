@@ -10,19 +10,19 @@ This is a utility designed to make it easier to perform RESTful API calls. It al
 [GitHub Wiki](https://github.com/destroyer0fWorlds/StringSearch/wiki)
 
 ### Nuget
-**Parse a filter string
+**Parse a filter string**
 
 Browse: https://www.nuget.org/packages/StringSearch.Filter/
 
 Download: `Install-Package StringSearch.Filter -Version 2.0.0`
 
-**Parse an order by string
+**Parse an order by string**
 
 Browse: https://www.nuget.org/packages/StringSearch.OrderBy/
 
 Download: `Install-Package StringSearch.OrderBy -Version 2.0.0`
 
-**Convert the results to TypeSearch
+**Convert the results to TypeSearch**
 
 Browse: https://www.nuget.org/packages/StringSearch.Converters.TypeSearch/
 
