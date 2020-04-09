@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>..\StringSearch.Converters.TypeSearchLib\StringSearch.Converters.TypeSearchLib.xml</DocumentationFile>
+    <DocumentationFile>StringSearch.Converters.TypeSearchLib.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
