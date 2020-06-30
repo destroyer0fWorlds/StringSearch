@@ -8,21 +8,21 @@ namespace StringSearch.Converters.TypeSearchLib
 {
     /// <summary>
     /// Convert <see cref="StringSearch"/> filter and order by results to 
-    /// <see cref="TypeSearch"/>.<see cref="TypeSearch.WhereCriteria{T}"/> and 
+    /// <see cref="TypeSearch"/>.<see cref="TypeSearch.FilterCriteria{T}"/> and 
     /// <see cref="TypeSearch"/>.<see cref="TypeSearch.SortCriteria{T}"/> respectively
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class TypeSearchConverter<T> : IFilterConverter<WhereCriteria<T>>, IOrderByConverter<SortCriteria<T>>
+    public class TypeSearchConverter<T> : IFilterConverter<FilterCriteria<T>>, IOrderByConverter<SortCriteria<T>>
         where T : class
     {
         /// <summary>
-        /// Convert the results of <see cref="StringSearch"/> (<see cref="ICriterion"/>) to <see cref="TypeSearch"/>.<see cref="TypeSearch.WhereCriteria{T}"/>
+        /// Convert the results of <see cref="StringSearch"/> (<see cref="ICriterion"/>) to <see cref="TypeSearch"/>.<see cref="TypeSearch.FilterCriteria{T}"/>
         /// </summary>
         /// <param name="criteria"></param>
         /// <returns></returns>
-        public WhereCriteria<T> ConvertTo(IEnumerable<ICriterion> criteria)
+        public FilterCriteria<T> ConvertTo(IEnumerable<ICriterion> criteria)
         {
-            var typeSearchCriteria = new WhereCriteria<T>();
+            var typeSearchCriteria = new FilterCriteria<T>();
             typeSearchCriteria.Criteria.AddRange(this.RecursiveConvertTo(criteria));
             return typeSearchCriteria;
         }
@@ -64,8 +64,8 @@ namespace StringSearch.Converters.TypeSearchLib
                 else
                 {
                     var nestedCriteria = (NestedCriterion)criterion;
-                    criteriaContainer.CriteriaCollection = new WhereCriteria<T>();
-                    criteriaContainer.CriteriaCollection.Criteria.AddRange(this.RecursiveConvertTo(nestedCriteria.Criteria));
+                    criteriaContainer.NestedFilter = new FilterCriteria<T>();
+                    criteriaContainer.NestedFilter.Criteria.AddRange(this.RecursiveConvertTo(nestedCriteria.Criteria));
                 }
 
                 typeSearchCriteria.Add(criteriaContainer);

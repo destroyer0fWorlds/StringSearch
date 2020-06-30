@@ -7,14 +7,14 @@
         <member name="T:StringSearch.Converters.TypeSearchLib.TypeSearchConverter`1">
             <summary>
             Convert <see cref="N:StringSearch"/> filter and order by results to 
-            <see cref="N:TypeSearch"/>.<see cref="T:TypeSearch.WhereCriteria`1"/> and 
+            <see cref="N:TypeSearch"/>.<see cref="T:TypeSearch.FilterCriteria`1"/> and 
             <see cref="N:TypeSearch"/>.<see cref="T:TypeSearch.SortCriteria`1"/> respectively
             </summary>
             <typeparam name="T"></typeparam>
         </member>
         <member name="M:StringSearch.Converters.TypeSearchLib.TypeSearchConverter`1.ConvertTo(System.Collections.Generic.IEnumerable{StringSearch.Filter.ICriterion})">
             <summary>
-            Convert the results of <see cref="N:StringSearch"/> (<see cref="T:StringSearch.Filter.ICriterion"/>) to <see cref="N:TypeSearch"/>.<see cref="T:TypeSearch.WhereCriteria`1"/>
+            Convert the results of <see cref="N:StringSearch"/> (<see cref="T:StringSearch.Filter.ICriterion"/>) to <see cref="N:TypeSearch"/>.<see cref="T:TypeSearch.FilterCriteria`1"/>
             </summary>
             <param name="criteria"></param>
             <returns></returns>

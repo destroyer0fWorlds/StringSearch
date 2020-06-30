@@ -145,8 +145,8 @@ namespace StringSearch.Converters.TypeSearchLib.Tests
             // TypeSearch
             Assert.Equal(typeof(CriteriaContainer<object>), typeResults.Criteria.ElementAt(1).GetType());
             var typeCriterion = typeResults.Criteria.ElementAt(1);
-            Assert.NotNull(typeCriterion.CriteriaCollection);
-            var nestedCriteria = typeCriterion.CriteriaCollection;
+            Assert.NotNull(typeCriterion.NestedFilter);
+            var nestedCriteria = typeCriterion.NestedFilter;
 
             Assert.Equal(typeof(CriteriaContainer<object>), nestedCriteria.Criteria.ElementAt(0).GetType());
             var typeNestedCriterion1 = nestedCriteria.Criteria.ElementAt(0);

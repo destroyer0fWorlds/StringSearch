@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
     <Authors>Joel</Authors>
     <Company>Excelsior Industries</Company>
     <PackageId>StringSearch.Converters.TypeSearch</PackageId>
@@ -11,6 +11,8 @@
     <PackageProjectUrl>https://github.com/destroyer0fWorlds/StringSearch</PackageProjectUrl>
     <Description>Utility for converting StringSearch results to TypeSearch's strongly typed filter.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>2.0.1.0</AssemblyVersion>
+    <FileVersion>2.0.1.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -18,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="TypeSearch" Version="1.1.4" />
+    <PackageReference Include="TypeSearch" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
